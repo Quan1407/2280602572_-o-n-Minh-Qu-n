@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Trợ lý AI | Doan Minh Quan - Chatbot hỗ trợ học Java & JavaScript</title>
+    <meta name="title" content="Trợ lý AI | Doan Minh Quan - Chatbot hỗ trợ học Java & JavaScript">
+    <meta name="description" content="Trợ lý AI chatbot hỗ trợ học tập về Java, JavaScript, an ninh mạng, lộ trình học và dự án. Trả lời câu hỏi về lập trình OOP, Exception Handling, DOM, ES6, bảo mật web.">
+    <meta name="keywords" content="AI chatbot, trợ lý AI, học Java, học JavaScript, chatbot lập trình, AI assistant, hỗ trợ học tập, tư vấn lập trình">
+    <meta name="author" content="Đoàn Minh Quân">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://doanminhquan.blog/ai-assistant.html">
+    <meta property="og:title" content="Trợ lý AI | Doan Minh Quan - Chatbot hỗ trợ học Java & JavaScript">
+    <meta property="og:description" content="Trợ lý AI chatbot hỗ trợ học tập về Java, JavaScript, an ninh mạng, lộ trình học và dự án.">
+    <meta property="og:image" content="https://doanminhquan.blog/img/profile.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://doanminhquan.blog/ai-assistant.html">
+    <meta property="twitter:title" content="Trợ lý AI | Doan Minh Quan - Chatbot hỗ trợ học Java & JavaScript">
+    <meta property="twitter:description" content="Trợ lý AI chatbot hỗ trợ học tập về lập trình và an ninh mạng.">
+    <meta property="twitter:image" content="https://doanminhquan.blog/img/profile.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.ico">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-[#f8fafc] text-slate-800 leading-relaxed min-h-screen flex flex-col">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 bg-white/80 backdrop-blur-md z-50 py-6">
+        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <div class="bg-slate-50/50 border border-slate-100 rounded-full px-2 py-1.5 flex items-center gap-1 shadow-sm">
+                <a href="index.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Trang chủ</a>
+                <a href="index.html#blog" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Bài viết</a>
+                <a href="projects.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Dự án</a>
+                <a href="certificates.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Chứng chỉ</a>
+                <a href="profile.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Giới thiệu</a>
+                <a href="ai-assistant.html" class="px-6 py-2 rounded-full bg-white text-indigo-600 font-semibold shadow-sm text-sm transition-all">Trợ lý AI</a>
+            </div>
+            <a href="mailto:quan.dm@student.edu.vn" class="bg-[#0f172a] text-white px-8 py-3 rounded-2xl font-bold hover:bg-slate-800 transition-all text-sm tracking-wide">Liên hệ</a>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto w-full px-6 py-12 flex-grow">
+        <header class="mb-10">
+            <h1 class="text-4xl font-bold text-slate-900 mb-2">Trợ lý AI của Quân</h1>
+            <p class="text-slate-500">Chế độ demo (offline): chat được + trả lời tự động ngay trên trình duyệt.</p>
+        </header>
+
+        <!-- Chat Container -->
+        <div class="bg-white rounded-[2rem] border border-slate-100 shadow-xl overflow-hidden flex flex-col h-[600px]">
+            
+            <!-- Chat Messages Area -->
+            <div id="chatScroll" class="flex-grow p-8 overflow-y-auto space-y-6 bg-slate-50/30 scrollbar-hide">
+                <!-- AI Message -->
+                <div class="flex items-start gap-4">
+                    <div class="w-11 h-11 rounded-2xl bg-indigo-50 flex-shrink-0 flex items-center justify-center text-indigo-600 font-bold text-lg">AI</div>
+                    <div class="max-w-[85%] bg-white border border-slate-100 p-6 rounded-2xl rounded-tl-none shadow-sm">
+                        <p class="text-slate-700 leading-relaxed">
+                            Chào bạn! Mình là trợ lý chat trên blog của <span class="font-bold">Đoàn Minh Quân</span>. Bạn muốn hỏi gì về <span class="font-bold">Java 22</span>, <span class="font-bold">JavaScript</span>, lộ trình học, dự án, hay chứng chỉ?
+                        </p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <button type="button" class="quick-chip px-4 py-2 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-100" data-prompt="Giải thích OOP trong Java thật dễ hiểu kèm ví dụ?">OOP Java</button>
+                            <button type="button" class="quick-chip px-4 py-2 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-100" data-prompt="Try-catch trong Java dùng khi nào? Ví dụ thực tế?">Exception Java</button>
+                            <button type="button" class="quick-chip px-4 py-2 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-100" data-prompt="DOM là gì? Cách query và addEventListener?">JS DOM</button>
+                            <button type="button" class="quick-chip px-4 py-2 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-100" data-prompt="Gợi ý 5 dự án Java cho sinh viên (có roadmap)?">Gợi ý dự án</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Placeholder for user messages -->
+                <div id="chat-messages" class="space-y-6"></div>
+
+                <!-- Typing Indicator -->
+                <div id="typingIndicator" class="hidden items-start gap-4">
+                    <div class="w-11 h-11 rounded-2xl bg-indigo-50 flex-shrink-0 flex items-center justify-center text-indigo-600 font-bold text-lg">AI</div>
+                    <div class="max-w-[85%] bg-white border border-slate-100 px-6 py-4 rounded-2xl rounded-tl-none shadow-sm">
+                        <div class="flex items-center gap-2 text-slate-500 text-sm">
+                            <span class="inline-block w-2 h-2 rounded-full bg-slate-300 animate-pulse"></span>
+                            <span class="inline-block w-2 h-2 rounded-full bg-slate-300 animate-pulse" style="animation-delay: 120ms;"></span>
+                            <span class="inline-block w-2 h-2 rounded-full bg-slate-300 animate-pulse" style="animation-delay: 240ms;"></span>
+                            <span class="ml-2">Đang trả lời...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-6 border-t border-slate-100 bg-white">
+                <div id="chatError" class="hidden mb-4 px-5 py-4 rounded-2xl bg-rose-50 border border-rose-100 text-rose-700 text-sm font-semibold"></div>
+                <div class="relative flex items-center gap-4">
+                    <input id="chatInput" type="text" placeholder="Bạn muốn hỏi gì... (Enter để gửi)" class="w-full bg-slate-50 border-none rounded-2xl px-6 py-4 text-slate-700 focus:ring-2 focus:ring-indigo-500 outline-none transition-all">
+                    <button id="sendBtn" type="button" class="bg-[#9333ea]/60 text-white px-8 py-4 rounded-2xl font-bold hover:bg-[#9333ea] transition-all flex items-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
+                        Gửi
+                    </button>
+                </div>
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mt-4">
+                    <p class="text-xs text-slate-400 italic">
+                        Demo offline: câu trả lời được tạo từ luật/keyword, không gửi dữ liệu ra ngoài. (AI có thể sai — hãy kiểm tra thông tin quan trọng.)
+                    </p>
+                    <button id="clearChatBtn" type="button" class="text-xs font-bold text-slate-500 hover:text-slate-800 uppercase tracking-wider">
+                        Xóa chat
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-slate-100 pt-20 pb-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <!-- Brand Section -->
+                <div class="col-span-1 md:col-span-2 space-y-6">
+                    <a href="index.html" class="text-2xl font-bold tracking-tight text-indigo-600 italic">Doan Minh Quan Blog.</a>
+                    <p class="text-slate-500 max-w-sm leading-relaxed">
+                        Nơi chia sẻ hành trình học tập, kinh nghiệm thực chiến về lập trình và an ninh mạng của một sinh viên CNTT.
+                    </p>
+                </div>
+
+                <!-- Navigation Section -->
+                <div class="space-y-6">
+                    <h4 class="text-slate-900 font-bold uppercase tracking-wider text-sm">Điều hướng</h4>
+                    <ul class="space-y-4">
+                        <li><a href="index.html" class="text-slate-500 hover:text-indigo-600 transition-colors">Trang chủ</a></li>
+                        <li><a href="index.html#blog" class="text-slate-500 hover:text-indigo-600 transition-colors">Bài viết</a></li>
+                        <li><a href="profile.html" class="text-slate-500 hover:text-indigo-600 transition-colors">Giới thiệu</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="space-y-6">
+                    <h4 class="text-slate-900 font-bold uppercase tracking-wider text-sm">Kết nối</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-slate-500 hover:text-indigo-600 transition-colors">GitHub</a></li>
+                        <li><a href="#" class="text-slate-500 hover:text-indigo-600 transition-colors">LinkedIn</a></li>
+                        <li><a href="#" class="text-slate-500 hover:text-indigo-600 transition-colors">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Section -->
+            <div class="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-slate-400 text-sm italic">
+                    &copy; 2025 Doan Minh Quan. Tất cả quyền được bảo lưu.
+                </p>
+                <div class="flex gap-8">
+                    <a href="#" class="text-slate-400 hover:text-indigo-600 text-sm transition-colors">Chính sách bảo mật</a>
+                    <a href="#" class="text-slate-400 hover:text-indigo-600 text-sm transition-colors">Điều khoản</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            'use strict';
+
+            const STORAGE_KEY = 'ai_chat_history_v1';
+            const MAX_INPUT_LEN = 800;
+            const MAX_HISTORY = 60;
+            const API_CHAT_URL = '/api/chat';
+            const API_HEALTH_URL = '/api/health';
+
+            const el = {
+                chatMessages: document.getElementById('chat-messages'),
+                chatScroll: document.getElementById('chatScroll'),
+                chatInput: document.getElementById('chatInput'),
+                sendBtn: document.getElementById('sendBtn'),
+                typing: document.getElementById('typingIndicator'),
+                error: document.getElementById('chatError'),
+                clearBtn: document.getElementById('clearChatBtn')
+            };
+
+            function escapeHtml(str) {
+                return String(str)
+                    .replaceAll('&', '&amp;')
+                    .replaceAll('<', '&lt;')
+                    .replaceAll('>', '&gt;')
+                    .replaceAll('"', '&quot;')
+                    .replaceAll("'", '&#039;');
+            }
+
+            function showError(msg) {
+                el.error.textContent = msg;
+                el.error.classList.remove('hidden');
+            }
+
+            function clearError() {
+                el.error.textContent = '';
+                el.error.classList.add('hidden');
+            }
+
+            function scrollToBottom() {
+                try {
+                    el.chatScroll.scrollTop = el.chatScroll.scrollHeight;
+                } catch (_) {}
+            }
+
+            function setTyping(isTyping) {
+                if (isTyping) {
+                    el.typing.classList.remove('hidden');
+                    el.typing.classList.add('flex');
+                } else {
+                    el.typing.classList.add('hidden');
+                    el.typing.classList.remove('flex');
+                }
+                scrollToBottom();
+            }
+
+            function nowTimeLabel() {
+                try {
+                    return new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+                } catch (_) {
+                    return 'Vừa xong';
+                }
+            }
+
+            function renderMessage(role, text, metaTime) {
+                const safeText = escapeHtml(text).replaceAll('\n', '<br>');
+                const time = escapeHtml(metaTime || nowTimeLabel());
+
+                if (role === 'user') {
+                    const initials = 'Bạn';
+                    const html = `
+                        <div class="flex items-start gap-4 justify-end">
+                            <div class="max-w-[85%] bg-indigo-600 text-white p-6 rounded-2xl rounded-tr-none shadow-sm">
+                                <p class="leading-relaxed">${safeText}</p>
+                                <div class="mt-3 text-[11px] text-indigo-100 font-semibold uppercase tracking-wider">${time}</div>
+                            </div>
+                            <div class="w-11 h-11 rounded-2xl bg-slate-900 flex-shrink-0 flex items-center justify-center text-white font-bold text-sm">${initials}</div>
+                        </div>
+                    `;
+                    el.chatMessages.insertAdjacentHTML('beforeend', html);
+                    return;
+                }
+
+                const html = `
+                    <div class="flex items-start gap-4">
+                        <div class="w-11 h-11 rounded-2xl bg-indigo-50 flex-shrink-0 flex items-center justify-center text-indigo-600 font-bold text-lg">AI</div>
+                        <div class="max-w-[85%] bg-white border border-slate-100 p-6 rounded-2xl rounded-tl-none shadow-sm">
+                            <div class="prose prose-slate max-w-none">
+                                <p class="text-slate-700 leading-relaxed">${safeText}</p>
+                            </div>
+                            <div class="mt-3 text-[11px] text-slate-400 font-bold uppercase tracking-wider">${time}</div>
+                        </div>
+                    </div>
+                `;
+                el.chatMessages.insertAdjacentHTML('beforeend', html);
+            }
+
+            function loadHistory() {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    if (!raw) return;
+                    const items = JSON.parse(raw);
+                    if (!Array.isArray(items)) return;
+
+                    for (const m of items.slice(-MAX_HISTORY)) {
+                        if (!m || typeof m !== 'object') continue;
+                        if (m.role !== 'user' && m.role !== 'ai') continue;
+                        if (typeof m.text !== 'string') continue;
+                        renderMessage(m.role, m.text, m.time);
+                    }
+                    scrollToBottom();
+                } catch (_) {
+                    // ignore corrupt storage
+                }
+            }
+
+            function saveHistoryAppend(role, text, time) {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    const arr = raw ? JSON.parse(raw) : [];
+                    const safeArr = Array.isArray(arr) ? arr : [];
+                    safeArr.push({ role, text, time });
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(safeArr.slice(-MAX_HISTORY)));
+                } catch (_) {
+                    // storage could be full/disabled; ignore
+                }
+            }
+
+            function clearHistory() {
+                try { localStorage.removeItem(STORAGE_KEY); } catch (_) {}
+                el.chatMessages.innerHTML = '';
+                clearError();
+                setTyping(false);
+                scrollToBottom();
+            }
+
+            function normalize(s) {
+                return String(s || '')
+                    .toLowerCase()
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '');
+            }
+
+            function generateReply(userText) {
+                const t = normalize(userText);
+
+                const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+                // Greetings
+                if (/(^|\s)(hi|hello|chao|xin chao|hey)(\s|$)/.test(t)) {
+                    return 'Chào bạn! Bạn muốn hỏi về Java, JavaScript, bảo mật, hay lộ trình/dự án nào?';
+                }
+
+                // Java OOP
+                if (t.includes('oop') || (t.includes('java') && (t.includes('class') || t.includes('object') || t.includes('ke thua') || t.includes('da hinh') || t.includes('dong goi')))) {
+                    return [
+                        'OOP trong Java có 4 ý chính: **Đóng gói, Kế thừa, Đa hình, Trừu tượng**.\n' +
+                        '- Đóng gói: giấu dữ liệu + public API (getter/setter)\n' +
+                        '- Kế thừa: reuse code (extends)\n' +
+                        '- Đa hình: cùng interface nhưng hành vi khác nhau (override)\n' +
+                        '- Trừu tượng: interface/abstract class để “thiết kế trước triển khai sau”\n\n' +
+                        'Nếu bạn muốn, bạn đưa 1 bài toán (vd: Quản lý thư viện) mình gợi ý class diagram + code khung.'
+                    ][0];
+                }
+
+                // Java Exception
+                if (t.includes('exception') || t.includes('try') || t.includes('catch') || (t.includes('java') && t.includes('loi'))) {
+                    return 'Trong Java, `try-catch` dùng khi bạn **dự đoán có lỗi lúc chạy** (I/O, parse, chia cho 0, null...).\n' +
+                        '- Dùng `try-with-resources` cho file/stream để tự đóng.\n' +
+                        '- Không catch chung chung rồi bỏ qua (nuốt lỗi).\n' +
+                        '- Tách `checked` (IOException) và `runtime` (NullPointerException) để xử lý đúng.\n\n' +
+                        'Bạn muốn ví dụ theo tình huống nào: đọc file, nhập liệu, hay gọi API?';
+                }
+
+                // JS DOM
+                if (t.includes('dom') || t.includes('addeventlistener') || t.includes('queryselector')) {
+                    return 'DOM là “cây” đại diện HTML trong JS. Bạn hay dùng:\n' +
+                        '- `document.querySelector()` / `querySelectorAll()` để lấy element\n' +
+                        '- `addEventListener("click", ...)` để bắt sự kiện\n' +
+                        '- `classList.add/remove/toggle` để đổi UI\n\n' +
+                        'Nếu bạn gửi đoạn HTML/JS đang làm, mình chỉ ra chỗ nên đặt event + tránh lỗi null.';
+                }
+
+                // Security
+                if (t.includes('bao mat') || t.includes('security') || t.includes('xss') || t.includes('csrf')) {
+                    return 'Một checklist bảo mật web cơ bản:\n' +
+                        '- **XSS**: escape output, không innerHTML bừa bãi\n' +
+                        '- **CSRF**: token, same-site cookie\n' +
+                        '- **Auth**: hash mật khẩu (bcrypt/argon2), không log secret\n' +
+                        '- **Input validation**: validate + sanitize\n\n' +
+                        'Bạn đang làm phần nào (frontend/static hay có backend) để mình tư vấn đúng?';
+                }
+
+                // Projects / roadmap
+                if (t.includes('du an') || t.includes('roadmap') || t.includes('lo trinh') || t.includes('project')) {
+                    return 'Gợi ý nhanh 3 dự án (level sinh viên) + hướng triển khai:\n' +
+                        '1) **Library Management** (Java): CRUD sách/độc giả, tìm kiếm, thống kê\n' +
+                        '2) **Todo/Notes Web** (JS): DOM + LocalStorage + filter/sort\n' +
+                        '3) **Pentest Lab (demo)**: mô tả quy trình, checklist OWASP Top 10 (không làm điều trái phép)\n\n' +
+                        'Bạn muốn mình viết roadmap 20–30 bài cho dự án nào?';
+                }
+
+                // Certificates
+                if (t.includes('chung chi') || t.includes('certificate')) {
+                    return 'Nếu bạn hỏi về chứng chỉ: bạn có thể bấm ảnh để phóng to (lightbox). Nếu bạn muốn mình thêm “mô tả chứng chỉ” theo từng ảnh (tên, đơn vị cấp, kỹ năng), nói mình biết danh sách chứng chỉ nhé.';
+                }
+
+                // Fallback
+                return pick([
+                    'Mình hiểu ý bạn. Bạn có thể nói rõ hơn 1 chút: bạn đang học Java hay JavaScript, và bạn muốn ví dụ/code hay chỉ giải thích?',
+                    'Bạn gửi câu hỏi cụ thể hơn (kèm đoạn code nếu có) để mình trả lời đúng nhất nhé.',
+                    'Bạn muốn mình trả lời theo dạng: tóm tắt, ví dụ code, hay checklist từng bước?'
+                ]);
+            }
+
+            async function isApiAvailable() {
+                try {
+                    const r = await fetch(API_HEALTH_URL, { method: 'GET', cache: 'no-store' });
+                    if (!r.ok) return false;
+                    const data = await r.json().catch(() => null);
+                    // We consider API "available" only when server has a key.
+                    return !!(data && data.ok === true && data.hasKey === true);
+                } catch (_) {
+                    return false;
+                }
+            }
+
+            function getHistoryForApi(maxItems = 12) {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    const items = raw ? JSON.parse(raw) : [];
+                    if (!Array.isArray(items)) return [];
+                    // Keep only text roles user/ai
+                    const trimmed = items
+                        .filter(m => m && (m.role === 'user' || m.role === 'ai') && typeof m.text === 'string')
+                        .slice(-maxItems);
+                    return trimmed.map(m => ({ role: m.role, text: m.text }));
+                } catch (_) {
+                    return [];
+                }
+            }
+
+            async function fetchReplyFromApi(userText) {
+                const payload = {
+                    message: userText,
+                    history: getHistoryForApi(16)
+                };
+                const r = await fetch(API_CHAT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await r.json().catch(() => null);
+                if (!r.ok || !data || data.ok !== true || typeof data.reply !== 'string') {
+                    const err = (data && data.error) ? data.error : 'Không gọi được AI server.';
+                    throw new Error(err);
+                }
+                return data.reply;
+            }
+
+            async function handleSend(textFromChip) {
+                clearError();
+
+                const text = (textFromChip != null) ? String(textFromChip) : String(el.chatInput.value || '');
+                const trimmed = text.trim();
+
+                if (!trimmed) {
+                    showError('Bạn chưa nhập nội dung.');
+                    return;
+                }
+                if (trimmed.length > MAX_INPUT_LEN) {
+                    showError(`Nội dung quá dài (tối đa ${MAX_INPUT_LEN} ký tự).`);
+                    return;
+                }
+
+                const userTime = nowTimeLabel();
+                renderMessage('user', trimmed, userTime);
+                saveHistoryAppend('user', trimmed, userTime);
+
+                el.chatInput.value = '';
+                el.chatInput.focus();
+                scrollToBottom();
+
+                // Simulate thinking
+                el.sendBtn.disabled = true;
+                setTyping(true);
+
+                let reply = '';
+                try {
+                    // Prefer real AI (server-side) if configured; fallback to offline demo
+                    const apiOk = await isApiAvailable();
+                    if (apiOk) {
+                        reply = await fetchReplyFromApi(trimmed);
+                    } else {
+                        // fake latency
+                        await new Promise((r) => setTimeout(r, 450));
+                        reply = generateReply(trimmed);
+                    }
+                } catch (err) {
+                    reply = 'Mình chưa gọi được AI trên server: ' + (err && err.message ? err.message : 'Lỗi không xác định') +
+                        '\n\nNếu bạn đang chạy local: hãy set biến môi trường `GEMINI_API_KEY` cho server Java.';
+                } finally {
+                    setTyping(false);
+                    el.sendBtn.disabled = false;
+                }
+
+                const aiTime = nowTimeLabel();
+                renderMessage('ai', reply, aiTime);
+                saveHistoryAppend('ai', reply, aiTime);
+                scrollToBottom();
+            }
+
+            // Bindings (bug-catchers)
+            try {
+                el.sendBtn.addEventListener('click', () => handleSend());
+                el.chatInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        handleSend();
+                    }
+                });
+
+                el.clearBtn.addEventListener('click', () => {
+                    if (confirm('Xóa toàn bộ chat trên trình duyệt này?')) clearHistory();
+                });
+
+                document.querySelectorAll('.quick-chip').forEach((btn) => {
+                    btn.addEventListener('click', () => handleSend(btn.getAttribute('data-prompt') || ''));
+                });
+
+                loadHistory();
+                scrollToBottom();
+            } catch (_) {
+                // last-resort; page still renders
+            }
+        })();
+    </script>
+
+</body>
+</html>
+

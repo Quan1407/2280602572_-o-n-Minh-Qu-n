@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    
+    <!-- Homepage -->
+    <url>
+        <loc>https://doanminhquan.blog/</loc>
+        <lastmod>2025-01-27</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Main Pages -->
+    <url>
+        <loc>https://doanminhquan.blog/profile.html</loc>
+        <lastmod>2025-01-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://doanminhquan.blog/projects.html</loc>
+        <lastmod>2025-01-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://doanminhquan.blog/certificates.html</loc>
+        <lastmod>2025-01-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://doanminhquan.blog/ai-assistant.html</loc>
+        <lastmod>2025-01-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <!-- Blog Posts - Java -->
+    <url>
+        <loc>https://doanminhquan.blog/blog/java-overview.html</loc>
+        <lastmod>2025-12-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <url>
+        <loc>https://doanminhquan.blog/blog/java-oop.html</loc>
+        <lastmod>2025-01-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <url>
+        <loc>https://doanminhquan.blog/blog/java-exception.html</loc>
+        <lastmod>2025-01-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <url>
+        <loc>https://doanminhquan.blog/blog/java-collections.html</loc>
+        <lastmod>2025-01-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <url>
+        <loc>https://doanminhquan.blog/blog/java-cybersecurity.html</loc>
+        <lastmod>2025-01-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- Blog Posts - JavaScript -->
+    <url>
+        <loc>https://doanminhquan.blog/blog/js-overview.html</loc>
+        <lastmod>2025-01-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <url>
+        <loc>https://doanminhquan.blog/blog/js-dom.html</loc>
+        <lastmod>2025-01-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <url>
+        <loc>https://doanminhquan.blog/blog/js-es6.html</loc>
+        <lastmod>2025-01-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <url>
+        <loc>https://doanminhquan.blog/blog/js-security.html</loc>
+        <lastmod>2025-01-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+</urlset>
+

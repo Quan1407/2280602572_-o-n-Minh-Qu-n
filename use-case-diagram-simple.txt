@@ -1,0 +1,81 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    SƠ ĐỒ USE CASE - DOAN MINH QUAN BLOG                      ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+                    ┌─────────────────┐
+                    │  👤 Người dùng   │
+                    │  (Guest/Reader) │
+                    └────────┬─────────┘
+                             │
+        ┌────────────────────┼────────────────────┐
+        │                    │                    │
+        ▼                    ▼                    ▼
+┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+│ UC1: Xem     │    │ UC2: Đọc     │    │ UC3: Tìm    │
+│ danh sách    │    │ bài viết     │    │ kiếm bài    │
+│ bài viết    │    │ chi tiết     │    │ viết        │
+└──────────────┘    └──────────────┘    └──────────────┘
+        │                    │                    │
+        ▼                    ▼                    ▼
+┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+│ UC4: Xem     │    │ UC5: Xem     │    │ UC6: Xem     │
+│ dự án và    │    │ chứng chỉ    │    │ trang giới   │
+│ lộ trình     │    │              │    │ thiệu        │
+└──────────────┘    └──────────────┘    └──────────────┘
+        │                    │                    │
+        ▼                    ▼                    ▼
+┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+│ UC7: Sử dụng │    │ UC8: Chia    │    │ UC9: Scroll  │
+│ Trợ lý AI    │    │ sẻ bài viết  │    │ và tương tác │
+└──────────────┘    └──────────────┘    └──────────────┘
+
+
+                    ┌─────────────────┐
+                    │ 👨‍💻 Quản trị viên │
+                    │  (Admin/Dev)    │
+                    └────────┬─────────┘
+                             │
+        ┌────────────────────┼────────────────────┐
+        │                    │                    │
+        ▼                    ▼                    ▼
+┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+│ UC10: Thêm   │    │ UC11: Sửa    │    │ UC12: Xóa    │
+│ bài viết    │    │ nội dung bài  │    │ bài viết     │
+│ mới          │    │ viết         │    │              │
+└──────────────┘    └──────────────┘    └──────────────┘
+        │                    │                    │
+        ▼                    ▼                    ▼
+┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+│ UC13: Cập    │    │ UC14: Thêm   │    │ UC15: Cấu   │
+│ nhật thông   │    │ chứng chỉ    │    │ hình website│
+│ tin cá nhân  │    │ mới           │    │              │
+└──────────────┘    └──────────────┘    └──────────────┘
+
+═══════════════════════════════════════════════════════════════════════════════
+
+CHÚ THÍCH:
+- UC1-UC9: Use Cases dành cho cả Người dùng và Quản trị viên
+- UC10-UC15: Use Cases chỉ dành cho Quản trị viên
+
+MÔ TẢ NGẮN GỌN:
+
+NGƯỜI DÙNG (Guest/Reader):
+├── UC1: Xem danh sách bài viết trên trang chủ
+├── UC2: Đọc bài viết chi tiết với đầy đủ nội dung
+├── UC3: Tìm kiếm bài viết theo từ khóa
+├── UC4: Xem dự án và lộ trình học tập
+├── UC5: Xem chứng chỉ với modal gallery
+├── UC6: Xem trang giới thiệu cá nhân
+├── UC7: Sử dụng Trợ lý AI chatbot
+├── UC8: Chia sẻ bài viết lên social media
+└── UC9: Scroll và tương tác với giao diện
+
+QUẢN TRỊ VIÊN (Admin):
+├── UC1-UC9: Tất cả quyền của Người dùng
+├── UC10: Thêm bài viết mới (tạo file HTML)
+├── UC11: Sửa nội dung bài viết (chỉnh sửa HTML)
+├── UC12: Xóa bài viết (xóa file HTML)
+├── UC13: Cập nhật thông tin cá nhân
+├── UC14: Thêm chứng chỉ mới
+└── UC15: Cấu hình website (SEO, sitemap, etc.)
+

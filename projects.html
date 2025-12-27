@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Dự án & Lộ trình học tập | Doan Minh Quan</title>
+    <meta name="title" content="Dự án & Lộ trình học tập | Doan Minh Quan">
+    <meta name="description" content="Hệ thống lộ trình học tập chuyên sâu: Master Java Fullstack & Security (20 bài), Frontend Master & Web Security (15 bài), Cybersecurity Professional Lab (15 module). Giáo trình từ Zero đến Hero về lập trình và an ninh mạng.">
+    <meta name="keywords" content="lộ trình học Java, lộ trình JavaScript, học an ninh mạng, giáo trình lập trình, Java fullstack, ReactJS, cybersecurity lab, penetration testing, web security">
+    <meta name="author" content="Đoàn Minh Quân">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://doanminhquan.blog/projects.html">
+    <meta property="og:title" content="Dự án & Lộ trình học tập | Doan Minh Quan">
+    <meta property="og:description" content="Hệ thống lộ trình học tập chuyên sâu về Java, JavaScript và Cybersecurity với hơn 50 bài học thực chiến.">
+    <meta property="og:image" content="https://doanminhquan.blog/img/profile.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://doanminhquan.blog/projects.html">
+    <meta property="twitter:title" content="Dự án & Lộ trình học tập | Doan Minh Quan">
+    <meta property="twitter:description" content="Hệ thống lộ trình học tập chuyên sâu về Java, JavaScript và Cybersecurity.">
+    <meta property="twitter:image" content="https://doanminhquan.blog/img/profile.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.ico">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        /* Hiệu ứng accordion mượt mà */
+        .lesson-content { max-height: 0; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); opacity: 0; }
+        .lesson-item.active .lesson-content { max-height: 1000px; opacity: 1; margin-top: 1.5rem; }
+        .lesson-item.active .chevron { transform: rotate(180deg); }
+        .lesson-item.active { border-color: rgb(79 70 229 / 0.3); background-color: white; shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
+    </style>
+</head>
+<body class="bg-[#f8fafc] text-slate-800 leading-relaxed min-h-screen">
+
+    <nav class="sticky top-0 bg-white/80 backdrop-blur-md z-50 py-6">
+        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <div class="bg-slate-50/50 border border-slate-100 rounded-full px-2 py-1.5 flex items-center gap-1 shadow-sm">
+                <a href="index.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Trang chủ</a>
+                <a href="index.html#blog" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Bài viết</a>
+                <a href="projects.html" class="px-6 py-2 rounded-full bg-white text-indigo-600 font-semibold shadow-sm text-sm transition-all">Dự án</a>
+                <a href="certificates.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Chứng chỉ</a>
+                <a href="profile.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Giới thiệu</a>
+                <a href="ai-assistant.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Trợ lý AI</a>
+            </div>
+            <a href="mailto:quan.dm@student.edu.vn" class="bg-[#0f172a] text-white px-8 py-3 rounded-2xl font-bold hover:bg-slate-800 transition-all text-sm tracking-wide">Liên hệ</a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 py-20">
+        <header class="text-center mb-20">
+            <h1 class="text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">Hệ thống Lộ trình học tập</h1>
+            <p class="text-slate-500 max-w-2xl mx-auto text-lg leading-relaxed">
+                Khám phá các giáo trình chuyên sâu về Lập trình & An ninh mạng với lộ trình bài bản lên tới 30 bài học thực chiến.
+            </p>
+        </header>
+        
+        <div class="space-y-24">
+            
+            <!-- Dự án 1: Master Java Fullstack & Security -->
+            <div class="bg-white rounded-[3.5rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="p-12 lg:p-16 space-y-8 border-b lg:border-b-0 lg:border-r border-slate-100">
+                        <div class="w-20 h-20 bg-indigo-50 rounded-3xl flex items-center justify-center">
+                            <span class="text-4xl">☕</span>
+                        </div>
+                        <div class="space-y-4">
+                            <h2 class="text-4xl font-black text-slate-900 leading-tight">Master Java Fullstack & Security</h2>
+                            <p class="text-slate-500 text-lg leading-relaxed">
+                                Giáo trình chuyên sâu tập trung vào tư duy hệ thống, xử lý dữ liệu lớn và bảo mật mã nguồn Java ứng dụng trong doanh nghiệp.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-5 py-2 bg-indigo-50 text-indigo-600 rounded-full text-xs font-bold uppercase tracking-widest">20 Bài học</span>
+                            <span class="px-5 py-2 bg-emerald-50 text-emerald-600 rounded-full text-xs font-bold uppercase tracking-widest">Expert Level</span>
+                        </div>
+                    </div>
+
+                    <div class="p-12 lg:p-16 bg-slate-50/30 max-h-[800px] overflow-y-auto custom-scrollbar">
+                        <h4 class="text-slate-900 font-bold uppercase tracking-[0.2em] text-xs mb-10 text-indigo-600">Nội dung chi tiết</h4>
+                        <div class="space-y-4">
+                            <script>
+                                const javaLessons = [
+                                    { id: '01', title: 'Tổng quan hệ sinh thái Java 22', content: 'Tìm hiểu về các tính năng mới nhất của JDK 22, cơ chế hoạt động của JVM, JRE và quy trình biên dịch bytecode.' },
+                                    { id: '02', title: 'Thiết lập môi trường & IDE chuẩn', content: 'Hướng dẫn cài đặt IntelliJ IDEA, cấu hình Maven, Gradle và quản lý các phiên bản Java với SDKMAN.' },
+                                    { id: '03', title: 'Cấu trúc dữ liệu & Biến nâng cao', content: 'Phân tích sâu về Primitive types, Reference types và cách quản lý bộ nhớ Heap/Stack trong Java.' },
+                                    { id: '04', title: 'Lập trình hướng đối tượng (OOP) - Phần 1', content: 'Nắm vững tính Đóng gói (Encapsulation) và tính Kế thừa (Inheritance). Cách sử dụng access modifiers để bảo mật dữ liệu.' },
+                                    { id: '05', title: 'Lập trình hướng đối tượng (OOP) - Phần 2', content: 'Tính Đa hình (Polymorphism) và tính Trừu tượng (Abstraction). Ứng dụng Interface và Abstract Class trong thực tế.' },
+                                    { id: '06', title: 'Java Collection Framework chuyên sâu', content: 'So sánh List, Set, Map. Khi nào dùng ArrayList vs LinkedList, HashMap vs TreeMap để tối ưu hiệu năng.' },
+                                    { id: '07', title: 'Exception Handling & Clean Code', content: 'Xây dựng hệ thống quản lý lỗi tập trung. Cách custom Exception và tránh lỗi "Silent Catch" gây nguy hiểm cho hệ thống.' },
+                                    { id: '08', title: 'Generic & Wildcards trong Java', content: 'Viết code linh hoạt và tái sử dụng cao với Generic. Tìm hiểu về Upper bounded và Lower bounded wildcards.' },
+                                    { id: '09', title: 'Java Stream API & Lambda Expression', content: 'Xử lý dữ liệu phong cách lập trình hàm. Tối ưu hóa các vòng lặp phức tạp chỉ với vài dòng code.' },
+                                    { id: '10', title: 'Đa luồng & Xử lý song song', content: 'Thread, Runnable và ExecutorService. Cách xử lý Race Condition và sử dụng khóa Synchronized.' },
+                                    { id: '11', title: 'File I/O & Serialization', content: 'Đọc ghi file với Java NIO. Tìm hiểu về Serialization để truyền tải đối tượng qua mạng an toàn.' },
+                                    { id: '12', title: 'Kết nối Database với JDBC & Hibernate', content: 'Cấu hình Connection Pool, thực hiện các thao tác CRUD và bảo mật chống SQL Injection từ tầng ứng dụng.' },
+                                    { id: '13', title: 'Java Reflection API', content: 'Khám phá sức mạnh của Reflection để can thiệp vào cấu trúc class tại runtime. Ứng dụng trong các framework như Spring.' },
+                                    { id: '14', title: 'Mã hóa dữ liệu với Java Cryptography', content: 'Sử dụng thư viện JCA/JCE để mã hóa AES, RSA và băm mật khẩu với BCrypt.' },
+                                    { id: '15', title: 'Xây dựng REST API với Spring Boot', content: 'Khởi tạo dự án Spring Boot, định nghĩa Controller và quản lý Dependency Injection (IoC).' },
+                                    { id: '16', title: 'Unit Testing với JUnit & Mockito', content: 'Viết test case đảm bảo chất lượng mã nguồn và tự động hóa quy trình kiểm thử phần mềm.' },
+                                    { id: '17', title: 'Bảo mật Spring Security cơ bản', content: 'Thiết lập hệ thống đăng nhập, phân quyền người dùng (Role-based access control).' },
+                                    { id: '18', title: 'Deployment & Dockerize ứng dụng Java', content: 'Đóng gói ứng dụng Java vào Docker Image và triển khai trên môi trường Cloud.' },
+                                    { id: '19', title: 'Tối ưu hóa hiệu năng (Performance Tuning)', content: 'Sử dụng JProfiler để tìm kiếm bộ nhớ bị rò rỉ (Memory Leak) và tối ưu hóa Garbage Collection.' },
+                                    { id: '20', title: 'Tổng kết & Đồ án cuối khóa', content: 'Xây dựng một hệ thống backend hoàn chỉnh áp dụng toàn bộ kiến thức đã học.' }
+                                ];
+
+                                javaLessons.forEach(lesson => {
+                                    document.write(`
+                                        <div class="lesson-item bg-white border border-slate-100 rounded-2xl p-6 cursor-pointer shadow-sm hover:border-indigo-200 transition-all" onclick="this.classList.toggle('active')">
+                                            <div class="flex justify-between items-center">
+                                                <div class="flex items-center gap-4">
+                                                    <span class="w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold text-xs">${lesson.id}</span>
+                                                    <h5 class="font-bold text-slate-900">${lesson.title}</h5>
+                                                </div>
+                                                <svg class="chevron w-5 h-5 text-slate-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                            </div>
+                                            <div class="lesson-content">
+                                                <p class="text-slate-500 text-sm leading-relaxed">${lesson.content}</p>
+                                            </div>
+                                        </div>
+                                    `);
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dự án 2: Frontend Master & Web Security -->
+            <div class="bg-white rounded-[3.5rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="p-12 lg:p-16 space-y-8 border-b lg:border-b-0 lg:border-r border-slate-100">
+                        <div class="w-20 h-20 bg-amber-50 rounded-3xl flex items-center justify-center">
+                            <span class="text-4xl">🚀</span>
+                        </div>
+                        <div class="space-y-4">
+                            <h2 class="text-4xl font-black text-slate-900 leading-tight">Frontend Master & Web Security</h2>
+                            <p class="text-slate-500 text-lg leading-relaxed">
+                                Lộ trình từ Zero đến Hero về JavaScript hiện đại, ReactJS và các kỹ thuật phòng thủ Web chuyên sâu.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-5 py-2 bg-amber-50 text-amber-600 rounded-full text-xs font-bold uppercase tracking-widest">15 Bài học</span>
+                            <span class="px-5 py-2 bg-rose-50 text-rose-600 rounded-full text-xs font-bold uppercase tracking-widest">Security Focus</span>
+                        </div>
+                    </div>
+
+                    <div class="p-12 lg:p-16 bg-slate-50/30 max-h-[800px] overflow-y-auto custom-scrollbar">
+                        <h4 class="text-slate-900 font-bold uppercase tracking-[0.2em] text-xs mb-10 text-amber-600">Nội dung chi tiết</h4>
+                        <div class="space-y-4">
+                            <script>
+                                const jsLessons = [
+                                    { id: '01', title: 'JavaScript Engine & Execution Context', content: 'Cách trình duyệt thực thi code JS. Tìm hiểu về Call Stack, Heap và Event Loop.' },
+                                    { id: '02', title: 'ES6+ Toàn tập (Phần 1)', content: 'Let, Const, Arrow Functions và Template Literals. Cách viết code hiện đại và sạch sẽ.' },
+                                    { id: '03', title: 'Thao tác DOM & Event Handling', content: 'Quản lý giao diện, bắt sự kiện người dùng và tạo hiệu ứng tương tác không cần thư viện.' },
+                                    { id: '04', title: 'Asynchronous JavaScript (Bất đồng bộ)', content: 'Callback, Promise và Async/Await. Cách xử lý API mà không làm treo giao diện.' },
+                                    { id: '05', title: 'Fetch API & Quản lý dữ liệu mạng', content: 'Gửi yêu cầu GET, POST và xử lý dữ liệu JSON từ máy chủ.' },
+                                    { id: '06', title: 'JavaScript Object Oriented Programming', content: 'Class, Prototype và tính kế thừa trong JavaScript hiện đại.' },
+                                    { id: '07', title: 'Lỗ hổng Cross-Site Scripting (XSS)', content: 'Phân tích cách hacker chèn mã độc vào JS và cách phòng thủ bằng Data Sanitization.' },
+                                    { id: '08', title: 'Bảo mật LocalStorage & SessionStorage', content: 'Nguy cơ lộ thông tin nhạy cảm và cách lưu trữ dữ liệu phía Client an toàn.' },
+                                    { id: '09', title: 'Giới thiệu ReactJS & JSX', content: 'Tư duy Component-based. Cách cài đặt và khởi tạo dự án với Vite.' },
+                                    { id: '10', title: 'React Hooks Chuyên sâu', content: 'useState, useEffect và các custom hooks để quản lý logic ứng dụng mượt mà.' },
+                                    { id: '11', title: 'Quản lý State với Redux/Zustand', content: 'Điều phối dữ liệu toàn cục trong các ứng dụng Web quy mô lớn.' },
+                                    { id: '12', title: 'Routing & Navigation', content: 'Xây dựng ứng dụng Single Page (SPA) với React Router.' },
+                                    { id: '13', title: 'Bảo mật React Application', content: 'Ngăn chặn tấn công CSRF, Clickjacking và bảo mật JWT Token.' },
+                                    { id: '14', title: 'Tối ưu hóa Performance (Lazy Loading)', content: 'Giảm thời gian tải trang bằng cách chia nhỏ bundle và tối ưu hóa hình ảnh.' },
+                                    { id: '15', title: 'Deployment & CI/CD', content: 'Tự động hóa quy trình triển khai lên Vercel/Netlify.' }
+                                ];
+
+                                jsLessons.forEach(lesson => {
+                                    document.write(`
+                                        <div class="lesson-item bg-white border border-slate-100 rounded-2xl p-6 cursor-pointer shadow-sm hover:border-amber-200 transition-all" onclick="this.classList.toggle('active')">
+                                            <div class="flex justify-between items-center">
+                                                <div class="flex items-center gap-4">
+                                                    <span class="w-8 h-8 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold text-xs">${lesson.id}</span>
+                                                    <h5 class="font-bold text-slate-900">${lesson.title}</h5>
+                                                </div>
+                                                <svg class="chevron w-5 h-5 text-slate-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                            </div>
+                                            <div class="lesson-content">
+                                                <p class="text-slate-500 text-sm leading-relaxed">${lesson.content}</p>
+                                            </div>
+                                        </div>
+                                    `);
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dự án 3: Cybersecurity Professional Lab -->
+            <div class="bg-white rounded-[3.5rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="p-12 lg:p-16 space-y-8 border-b lg:border-b-0 lg:border-r border-slate-100">
+                        <div class="w-20 h-20 bg-rose-50 rounded-3xl flex items-center justify-center">
+                            <span class="text-4xl">🛡️</span>
+                        </div>
+                        <div class="space-y-4">
+                            <h2 class="text-4xl font-black text-slate-900 leading-tight">Cybersecurity Professional Lab</h2>
+                            <p class="text-slate-500 text-lg leading-relaxed">
+                                Dự án nghiên cứu thực chiến về hạ tầng mạng, tấn công giả lập và các phương pháp phòng thủ chủ động.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-5 py-2 bg-rose-50 text-rose-600 rounded-full text-xs font-bold uppercase tracking-widest">15 Module</span>
+                            <span class="px-5 py-2 bg-slate-900 text-white rounded-full text-xs font-bold uppercase tracking-widest">Offensive Security</span>
+                        </div>
+                    </div>
+
+                    <div class="p-12 lg:p-16 bg-slate-50/30 max-h-[800px] overflow-y-auto custom-scrollbar">
+                        <h4 class="text-slate-900 font-bold uppercase tracking-[0.2em] text-xs mb-10 text-rose-600">Nội dung chi tiết</h4>
+                        <div class="space-y-4">
+                            <script>
+                                const securityLessons = [
+                                    { id: '01', title: 'Hạ tầng mạng & Giao thức TCP/IP', content: 'Phân tích gói tin với Wireshark, hiểu rõ mô hình OSI và các giao thức HTTP/HTTPS.' },
+                                    { id: '02', title: 'Quét lỗ hổng hệ thống (Reconnaissance)', content: 'Sử dụng Nmap, Shodan để thu thập thông tin và phát hiện các cổng đang mở.' },
+                                    { id: '03', title: 'Tấn công Web: SQL Injection', content: 'Kỹ thuật khai thác dữ liệu từ database thông qua các câu lệnh SQL không an toàn.' },
+                                    { id: '04', title: 'Tấn công Web: XSS & CSRF', content: 'Chèn mã độc và giả mạo yêu cầu người dùng để chiếm quyền điều khiển.' },
+                                    { id: '05', title: 'Mã hóa & Giải mã (Cryptography)', content: 'Tìm hiểu về băm mật khẩu, chữ ký số và giao thức trao đổi khóa SSL/TLS.' },
+                                    { id: '06', title: 'Bảo mật Hệ điều hành Linux', content: 'Quản lý quyền hạn (Permissions), thiết lập Firewalls (UFW/IPTables) và giám sát log hệ thống.' },
+                                    { id: '07', title: 'Tấn công vào hạ tầng mạng không dây', content: 'Phân tích các lỗ hổng của chuẩn bảo mật WPA2/WPA3.' },
+                                    { id: '08', title: 'Phòng thủ chủ động với WAF & IDS/IPS', content: 'Thiết lập hệ thống phát hiện và ngăn chặn xâm nhập trái phép.' },
+                                    { id: '09', title: 'Social Engineering & Phishing Prevention', content: 'Nghiên cứu các kỹ thuật lừa đảo qua email và cách đào tạo nhận thức bảo mật cho người dùng.' },
+                                    { id: '10', title: 'Bảo mật ứng dụng di động (Mobile Security)', content: 'Phân tích file APK/IPA và tìm kiếm các lỗ hổng lưu trữ dữ liệu không an toàn.' },
+                                    { id: '11', title: 'Nghiên cứu Malware & Reverse Engineering', content: 'Phân tích hành vi của mã độc trong môi trường Sandbox.' },
+                                    { id: '12', title: 'Bảo mật Cloud (AWS/Azure)', content: 'Quản lý Identity Access Management (IAM) và bảo mật Bucket lưu trữ dữ liệu.' },
+                                    { id: '13', title: 'Incident Response & Digital Forensics', content: 'Quy trình ứng cứu sự cố và điều tra dấu vết sau khi bị tấn công.' },
+                                    { id: '14', title: 'Hệ thống giám sát bảo mật SIEM', content: 'Sử dụng ELK Stack để tập hợp và phân tích log từ nhiều nguồn khác nhau.' },
+                                    { id: '15', title: 'Báo cáo & Đánh giá rủi ro', content: 'Viết báo cáo kỹ thuật sau khi thực hiện kiểm thử xâm nhập chuyên nghiệp.' }
+                                ];
+
+                                securityLessons.forEach(lesson => {
+                                    document.write(`
+                                        <div class="lesson-item bg-white border border-slate-100 rounded-2xl p-6 cursor-pointer shadow-sm hover:border-rose-200 transition-all" onclick="this.classList.toggle('active')">
+                                            <div class="flex justify-between items-center">
+                                                <div class="flex items-center gap-4">
+                                                    <span class="w-8 h-8 bg-rose-600 text-white rounded-full flex items-center justify-center font-bold text-xs">${lesson.id}</span>
+                                                    <h5 class="font-bold text-slate-900">${lesson.title}</h5>
+                                                </div>
+                                                <svg class="chevron w-5 h-5 text-slate-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                            </div>
+                                            <div class="lesson-content">
+                                                <p class="text-slate-500 text-sm leading-relaxed">${lesson.content}</p>
+                                            </div>
+                                        </div>
+                                    `);
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-slate-100 pt-20 pb-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-2 space-y-6">
+                    <a href="index.html" class="text-2xl font-bold tracking-tight text-indigo-600 italic">Doan Minh Quan Blog.</a>
+                    <p class="text-slate-500 max-w-sm leading-relaxed">
+                        Nơi chia sẻ hành trình học tập, kinh nghiệm thực chiến về lập trình và an ninh mạng của một sinh viên CNTT.
+                    </p>
+                </div>
+                <div class="space-y-6">
+                    <h4 class="text-slate-900 font-bold uppercase tracking-wider text-sm">Điều hướng</h4>
+                    <ul class="space-y-4">
+                        <li><a href="index.html" class="text-slate-500 hover:text-indigo-600 transition-colors">Trang chủ</a></li>
+                        <li><a href="index.html#blog" class="text-slate-500 hover:text-indigo-600 transition-colors">Bài viết</a></li>
+                        <li><a href="profile.html" class="text-slate-500 hover:text-indigo-600 transition-colors">Giới thiệu</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-6">
+                    <h4 class="text-slate-900 font-bold uppercase tracking-wider text-sm">Kết nối</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-slate-500 hover:text-indigo-600 transition-colors">GitHub</a></li>
+                        <li><a href="#" class="text-slate-500 hover:text-indigo-600 transition-colors">LinkedIn</a></li>
+                        <li><a href="#" class="text-slate-500 hover:text-indigo-600 transition-colors">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-slate-400 text-sm italic">
+                    &copy; 2025 Doan Minh Quan. Tất cả quyền được bảo lưu.
+                </p>
+                <div class="flex gap-8">
+                    <a href="#" class="text-slate-400 hover:text-indigo-600 text-sm transition-colors">Chính sách bảo mật</a>
+                    <a href="#" class="text-slate-400 hover:text-indigo-600 text-sm transition-colors">Điều khoản</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

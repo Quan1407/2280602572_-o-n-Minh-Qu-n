@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>JavaScript và vấn đề bảo mật trong Web | Doan Minh Quan Blog</title>
+    <meta name="title" content="JavaScript và vấn đề bảo mật trong Web | Doan Minh Quan Blog">
+    <meta name="description" content="Phòng chống XSS (Cross-Site Scripting), CSRF, Clickjacking và các nguy cơ bảo mật web dành cho sinh viên An ninh mạng. Best practices bảo mật JavaScript, sanitize input, Content Security Policy.">
+    <meta name="keywords" content="JavaScript security, XSS prevention, CSRF protection, web security, bảo mật JavaScript, XSS attack, CSRF attack, Content Security Policy, sanitize input">
+    <meta name="author" content="Đoàn Minh Quân">
+    <meta name="robots" content="index, follow">
+    <meta name="article:section" content="Web Security">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://doanminhquan.blog/blog/js-security.html">
+    <meta property="og:title" content="JavaScript và vấn đề bảo mật trong Web">
+    <meta property="og:description" content="Phòng chống XSS, CSRF và các nguy cơ bảo mật web dành cho sinh viên An ninh mạng.">
+    <meta property="og:image" content="https://doanminhquan.blog/img/profile.jpg">
+    <meta property="article:section" content="Web Security">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://doanminhquan.blog/blog/js-security.html">
+    <meta property="twitter:title" content="JavaScript và vấn đề bảo mật trong Web">
+    <meta property="twitter:description" content="Phòng chống XSS, CSRF và các nguy cơ bảo mật web dành cho sinh viên An ninh mạng.">
+    <meta property="twitter:image" content="https://doanminhquan.blog/img/profile.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="alternate icon" href="../favicon.ico">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-[#f8fafc] text-slate-800 leading-relaxed">
+    <nav class="sticky top-0 bg-white/80 backdrop-blur-md z-50 py-6">
+        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <div class="bg-slate-50/50 border border-slate-100 rounded-full px-2 py-1.5 flex items-center gap-1 shadow-sm">
+                <a href="../index.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Trang chủ</a>
+                <a href="../index.html#blog" class="px-6 py-2 rounded-full bg-white text-indigo-600 font-semibold shadow-sm text-sm transition-all">Bài viết</a>
+                <a href="../projects.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Dự án</a>
+                <a href="../certificates.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Chứng chỉ</a>
+                <a href="../profile.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Giới thiệu</a>
+                <a href="../ai-assistant.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Trợ lý AI</a>
+            </div>
+            <a href="mailto:quan.dm@student.edu.vn" class="bg-[#0f172a] text-white px-8 py-3 rounded-2xl font-bold hover:bg-slate-800 transition-all text-sm tracking-wide">Liên hệ</a>
+        </div>
+    </nav>
+
+    <article class="max-w-4xl mx-auto px-6 py-20">
+        <header class="mb-16 text-center">
+            <p class="text-indigo-600 font-bold mb-4 uppercase tracking-widest text-sm">Web Security</p>
+            <h1 class="text-5xl font-extrabold mb-6 tracking-tight text-slate-900 leading-tight">JavaScript và vấn đề bảo mật trong Web</h1>
+            <div class="flex items-center justify-center text-slate-400 text-sm font-medium">
+                <span>Đoàn Minh Quân</span>
+                <span class="mx-3 text-slate-200">|</span>
+                <span>26/12/2025</span>
+            </div>
+        </header>
+
+        <div class="prose prose-indigo prose-lg text-slate-600 max-w-none space-y-8 bg-white p-12 rounded-[2.5rem] shadow-sm border border-slate-100">
+            <p class="text-xl leading-relaxed">
+                Bên cạnh những ưu điểm vượt trội, JavaScript cũng tiềm ẩn nhiều rủi ro bảo mật nếu không được sử dụng đúng cách. Một số lỗ hổng phổ biến liên quan đến JavaScript là <span class="text-slate-900 font-bold">XSS (Cross-Site Scripting)</span> và các kỹ thuật đánh cắp dữ liệu người dùng.
+            </p>
+
+            <div class="space-y-4">
+                <h2 class="text-3xl font-bold text-slate-900">Xây dựng hệ thống an toàn</h2>
+                <p>
+                    Lập trình viên cần kiểm soát chặt chẽ dữ liệu đầu vào, tuyệt đối tránh thực thi mã không đáng tin cậy và áp dụng các biện pháp bảo mật phù hợp như <span class="text-slate-900 font-semibold">Content Security Policy (CSP)</span>. Việc hiểu rõ các nguy cơ giúp chúng ta xây dựng website an toàn và bền vững hơn.
+                </p>
+            </div>
+
+            <div class="bg-red-50 p-8 rounded-3xl border border-red-100">
+                <h3 class="text-xl font-bold text-red-900 mb-4 flex items-center gap-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    Tầm quan trọng đối với SV An ninh mạng
+                </h3>
+                <p class="text-red-800">
+                    Đối với sinh viên An ninh mạng, việc kết hợp nhuần nhuyễn kiến thức JavaScript và bảo mật web là một yêu cầu tất yếu trong thực tế để bảo vệ các ứng dụng hiện đại.
+                </p>
+            </div>
+
+            <h2 class="text-3xl font-bold text-slate-900 pt-8">Kết luận</h2>
+            <p>
+                Bảo mật không bao giờ là điểm dừng, nó là một hành trình liên tục. Hãy luôn cảnh giác và cập nhật các phương thức phòng thủ mới nhất để bảo vệ sản phẩm của mình.
+            </p>
+        </div>
+
+        <footer class="mt-20 pt-10 border-t border-slate-100 flex justify-between items-center">
+            <a href="js-es6.html" class="text-indigo-600 font-bold hover:underline flex items-center gap-2 transition-all">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Bài trước
+            </a>
+            <a href="../index.html#blog" class="text-indigo-600 font-bold hover:underline flex items-center gap-2 transition-all">
+                Về danh sách
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18m-9-9l9 9-9 9"></path></svg>
+            </a>
+        </footer>
+        </article>
+
+        <!-- Share & Interaction Section -->
+        <div class="mt-12 pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-4">
+                <span class="text-slate-900 font-bold text-sm uppercase tracking-wider text-indigo-600">Chia sẻ bài viết:</span>
+                <div class="flex gap-2">
+                    <a href="#" class="w-10 h-10 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all shadow-sm" title="Facebook">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-sky-50 text-sky-500 rounded-full flex items-center justify-center hover:bg-sky-500 hover:text-white transition-all shadow-sm" title="Twitter">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.923 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-all shadow-sm" title="LinkedIn">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <button class="w-10 h-10 bg-slate-50 text-slate-600 rounded-full flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all shadow-sm" title="Copy Link">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <button class="flex items-center gap-2 text-slate-500 hover:text-rose-500 transition-colors group">
+                    <svg class="w-6 h-6 group-hover:fill-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                    <span class="font-bold text-sm">156 Thích</span>
+                </button>
+                <div class="flex items-center gap-2 text-slate-500">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    <span class="font-bold text-sm">2.4k Lượt xem</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="mt-20 space-y-12">
+            <div class="flex items-center justify-between">
+                <h3 class="text-3xl font-black text-slate-900 tracking-tight">Bình luận <span class="text-indigo-600 text-lg ml-2">02</span></h3>
+                <div class="h-px flex-grow mx-8 bg-slate-100 hidden md:block"></div>
+            </div>
+
+            <!-- Comment Form -->
+            <div class="bg-white rounded-[2rem] border border-slate-100 p-8 shadow-sm">
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="text" placeholder="Họ và tên" class="bg-slate-50 border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-indigo-500 transition-all font-medium text-slate-700">
+                        <input type="email" placeholder="Email (Không hiển thị)" class="bg-slate-50 border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-indigo-500 transition-all font-medium text-slate-700">
+                    </div>
+                    <textarea rows="4" placeholder="Viết bình luận của bạn..." class="w-full bg-slate-50 border-none rounded-[2rem] px-6 py-4 focus:ring-2 focus:ring-indigo-500 transition-all font-medium text-slate-700"></textarea>
+                    <button type="submit" class="bg-indigo-600 text-white px-10 py-4 rounded-2xl font-bold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200">Gửi bình luận</button>
+                </form>
+            </div>
+
+            <!-- Comment List -->
+            <div class="space-y-8 mt-12">
+                <!-- Comment 1 -->
+                <div class="flex gap-6 group">
+                    <div class="w-14 h-14 rounded-2xl bg-rose-50 flex-shrink-0 flex items-center justify-center text-rose-600 font-bold text-xl">
+                        M
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <h4 class="font-black text-slate-900">Minh Tùng</h4>
+                            <span class="text-slate-300">•</span>
+                            <span class="text-slate-400 text-xs font-bold uppercase tracking-wider">1 giờ trước</span>
+                        </div>
+                        <p class="text-slate-600 leading-relaxed">
+                            XSS là lỗ hổng cực kỳ nguy hiểm. Bài viết này rất cần thiết cho các bạn dev web.
+                        </p>
+                        <button class="text-indigo-600 font-bold text-xs uppercase tracking-widest hover:text-indigo-800">Trả lời</button>
+                    </div>
+                </div>
+
+                <!-- Comment 2 -->
+                <div class="flex gap-6 group">
+                    <div class="w-14 h-14 rounded-2xl bg-indigo-50 flex-shrink-0 flex items-center justify-center text-indigo-600 font-bold text-xl">
+                        T
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <h4 class="font-black text-slate-900">Thanh Hà</h4>
+                            <span class="text-slate-300">•</span>
+                            <span class="text-slate-400 text-xs font-bold uppercase tracking-wider">3 giờ trước</span>
+                        </div>
+                        <p class="text-slate-600 leading-relaxed">
+                            Cảm ơn tác giả đã chia sẻ các biện pháp phòng chống XSS rất cụ thể.
+                        </p>
+                        <button class="text-indigo-600 font-bold text-xs uppercase tracking-widest hover:text-indigo-800">Trả lời</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <footer class="bg-white border-t border-slate-100 pt-20 pb-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <!-- Brand Section -->
+                <div class="col-span-1 md:col-span-2 space-y-6">
+                    <a href="../index.html" class="text-2xl font-bold tracking-tight text-indigo-600 italic">Doan Minh Quan Blog.</a>
+                    <p class="text-slate-500 max-w-sm leading-relaxed">
+                        Nơi chia sẻ hành trình học tập, kinh nghiệm thực chiến về lập trình và an ninh mạng của một sinh viên CNTT.
+                    </p>
+                </div>
+
+                <!-- Navigation Section -->
+                <div class="space-y-6">
+                    <h4 class="text-slate-900 font-bold uppercase tracking-wider text-sm">Điều hướng</h4>
+                    <ul class="space-y-4">
+                        <li><a href="../index.html" class="text-slate-500 hover:text-indigo-600 transition-colors">Trang chủ</a></li>
+                        <li><a href="../index.html#blog" class="text-slate-500 hover:text-indigo-600 transition-colors">Bài viết</a></li>
+                        <li><a href="../profile.html" class="text-slate-500 hover:text-indigo-600 transition-colors">Giới thiệu</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="space-y-6">
+                    <h4 class="text-slate-900 font-bold uppercase tracking-wider text-sm">Kết nối</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-slate-500 hover:text-indigo-600 transition-colors">GitHub</a></li>
+                        <li><a href="#" class="text-slate-500 hover:text-indigo-600 transition-colors">LinkedIn</a></li>
+                        <li><a href="#" class="text-slate-500 hover:text-indigo-600 transition-colors">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Section -->
+            <div class="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-slate-400 text-sm italic">
+                    &copy; 2025 Doan Minh Quan. Tất cả quyền được bảo lưu.
+                </p>
+                <div class="flex gap-8">
+                    <a href="#" class="text-slate-400 hover:text-indigo-600 text-sm transition-colors">Chính sách bảo mật</a>
+                    <a href="#" class="text-slate-400 hover:text-indigo-600 text-sm transition-colors">Điều khoản</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
