@@ -32,26 +32,50 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="alternate icon" href="favicon.ico">
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    <script>
+        // Configure Tailwind for dark mode (class-based)
+        tailwind.config = tailwind.config || {};
+        tailwind.config.darkMode = 'class';
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
     </style>
+    <script>
+        // Dark mode initialization - must run before Tailwind loads
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
 </head>
-<body class="bg-[#f8fafc] text-slate-800 leading-relaxed">
+<body class="bg-gradient-to-br from-slate-50 via-cyan-50/30 to-teal-50/20 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-slate-800 dark:text-slate-100 leading-relaxed transition-colors duration-300">
 
     <!-- Navigation -->
-    <nav class="sticky top-0 bg-white/80 backdrop-blur-md z-50 py-6">
+    <nav class="sticky top-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-50 py-6 border-b border-slate-200 dark:border-slate-700">
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <div class="bg-slate-50/50 border border-slate-100 rounded-full px-2 py-1.5 flex items-center gap-1 shadow-sm">
-                <a href="index.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Trang chủ</a>
-                <a href="index.html#blog" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Bài viết</a>
-                <a href="projects.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Dự án</a>
-                <a href="certificates.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Chứng chỉ</a>
-                <a href="profile.html" class="px-6 py-2 rounded-full bg-white text-indigo-600 font-semibold shadow-sm text-sm transition-all">Giới thiệu</a>
-                <a href="ai-assistant.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Trợ lý AI</a>
+            <div class="bg-white/70 dark:bg-slate-800/70 border border-cyan-100 dark:border-slate-700 rounded-2xl px-2 py-1.5 flex items-center gap-1 shadow-md backdrop-blur-sm">
+                <a href="index.html" class="px-6 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-700 font-medium text-sm transition-all">Home</a>
+                <a href="index.html#blog" class="px-6 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-700 font-medium text-sm transition-all">Articles</a>
+                <a href="projects.html" class="px-6 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-700 font-medium text-sm transition-all">Projects</a>
+                <a href="certificates.html" class="px-6 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-700 font-medium text-sm transition-all">Certificates</a>
+                <a href="profile.html" class="px-6 py-2 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold shadow-lg text-sm transition-all hover:from-teal-600 hover:to-cyan-600">About</a>
+                <a href="ai-assistant.html" class="px-6 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-700 font-medium text-sm transition-all">AI Assistant</a>
             </div>
-            <a href="mailto:quan.dm@student.edu.vn" class="bg-[#0f172a] text-white px-8 py-3 rounded-2xl font-bold hover:bg-slate-800 transition-all text-sm tracking-wide">Liên hệ</a>
+            <div class="flex items-center gap-4">
+                <button id="themeToggle" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center transition-all" aria-label="Toggle dark mode">
+                    <svg id="sunIcon" class="w-5 h-5 text-slate-700 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <svg id="moonIcon" class="w-5 h-5 text-slate-300 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </button>
+                <a href="mailto:doanminhquan969@gmail.com" class="bg-gradient-to-r from-teal-600 to-cyan-600 text-white px-8 py-3 rounded-2xl font-bold hover:from-teal-700 hover:to-cyan-700 transition-all text-sm tracking-wide shadow-lg hover:shadow-xl">Contact</a>
+            </div>
         </div>
     </nav>
 
@@ -60,38 +84,35 @@
             
             <!-- Left Side: Content -->
             <div class="space-y-8">
-                <div class="space-y-6 text-slate-600 text-lg">
-                    <h1 class="text-4xl font-bold text-slate-900 mb-8">Giới thiệu bản thân</h1>
+                <div class="space-y-6 text-slate-600 dark:text-slate-300 text-lg">
+                    <h1 class="text-4xl font-bold text-slate-900 dark:text-slate-100 mb-8">Giới thiệu bản thân</h1>
                     <p>
-                        Tôi là sinh viên ngành <span class="font-bold text-slate-900">Công nghệ Thông tin</span>, chuyên ngành <span class="font-bold text-slate-900">An Ninh Mạng</span>, có định hướng phát triển trong lĩnh vực lập trình và bảo mật hệ thống. Trong quá trình học tập, tôi tập trung vào việc xây dựng nền tảng vững chắc về lập trình Java, JavaScript, phát triển web và các kiến thức cơ bản về an toàn thông tin.
+                        Tôi là sinh viên ngành <span class="font-bold text-slate-900 dark:text-slate-100">Công nghệ Thông tin</span>, chuyên ngành <span class="font-bold text-slate-900 dark:text-slate-100">An Ninh Mạng</span>. Tôi tập trung phát triển kỹ năng lập trình Java, JavaScript và bảo mật web.
                     </p>
                     <p>
-                        Trang web cá nhân này được xây dựng với mục tiêu chia sẻ kiến thức học tập, các dự án đã thực hiện và quá trình rèn luyện kỹ năng trong lĩnh vực Công nghệ Thông tin. Thông qua blog và các dự án, tôi mong muốn hệ thống hóa lại kiến thức đã học, đồng thời nâng cao khả năng trình bày và tư duy giải quyết vấn đề.
-                    </p>
-                    <p>
-                        Trong thời gian tới, tôi hướng đến việc phát triển bản thân theo định hướng lập trình kết hợp an ninh mạng, đặc biệt là các hệ thống web an toàn, phân tích rủi ro và bảo mật ứng dụng.
+                        Trang web này là nơi tôi chia sẻ kiến thức, dự án và hành trình học tập trong lĩnh vực CNTT. Mục tiêu của tôi là trở thành Full-stack Developer chuyên về bảo mật web.
                     </p>
                 </div>
 
                 <!-- Skills Section -->
-                <div class="bg-white border border-slate-200 p-8 rounded-2xl shadow-sm space-y-6">
-                    <h3 class="text-2xl font-bold text-slate-900 flex items-center gap-3">
+                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 rounded-2xl shadow-sm space-y-6">
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100 flex items-center gap-3">
                         <span class="text-3xl">💻</span>
                         Kỹ năng
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Programming Languages -->
                         <div class="space-y-3">
-                            <h4 class="font-bold text-slate-700 text-sm uppercase tracking-wider">Ngôn ngữ lập trình</h4>
+                            <h4 class="font-bold text-slate-700 dark:text-slate-300 text-sm uppercase tracking-wider">Ngôn ngữ lập trình</h4>
                             <div class="flex flex-wrap gap-2">
-                                <span class="px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-sm font-semibold">Java</span>
+                                <span class="px-4 py-2 bg-teal-100 text-teal-700 rounded-full text-sm font-semibold">Java</span>
                                 <span class="px-4 py-2 bg-yellow-100 text-yellow-700 rounded-full text-sm font-semibold">JavaScript</span>
                                 <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">HTML/CSS</span>
                             </div>
                         </div>
                         <!-- Web Development -->
                         <div class="space-y-3">
-                            <h4 class="font-bold text-slate-700 text-sm uppercase tracking-wider">Phát triển Web</h4>
+                            <h4 class="font-bold text-slate-700 dark:text-slate-300 text-sm uppercase tracking-wider">Phát triển Web</h4>
                             <div class="flex flex-wrap gap-2">
                                 <span class="px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-semibold">Frontend</span>
                                 <span class="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold">DOM Manipulation</span>
@@ -100,7 +121,7 @@
                         </div>
                         <!-- Security -->
                         <div class="space-y-3">
-                            <h4 class="font-bold text-slate-700 text-sm uppercase tracking-wider">An ninh mạng</h4>
+                            <h4 class="font-bold text-slate-700 dark:text-slate-300 text-sm uppercase tracking-wider">An ninh mạng</h4>
                             <div class="flex flex-wrap gap-2">
                                 <span class="px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-semibold">Web Security</span>
                                 <span class="px-4 py-2 bg-orange-100 text-orange-700 rounded-full text-sm font-semibold">XSS Prevention</span>
@@ -109,9 +130,9 @@
                         </div>
                         <!-- Tools & Others -->
                         <div class="space-y-3">
-                            <h4 class="font-bold text-slate-700 text-sm uppercase tracking-wider">Công cụ & Khác</h4>
+                            <h4 class="font-bold text-slate-700 dark:text-slate-300 text-sm uppercase tracking-wider">Công cụ & Khác</h4>
                             <div class="flex flex-wrap gap-2">
-                                <span class="px-4 py-2 bg-slate-100 text-slate-700 rounded-full text-sm font-semibold">Git</span>
+                                <span class="px-4 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm font-semibold">Git</span>
                                 <span class="px-4 py-2 bg-cyan-100 text-cyan-700 rounded-full text-sm font-semibold">VS Code</span>
                                 <span class="px-4 py-2 bg-teal-100 text-teal-700 rounded-full text-sm font-semibold">Problem Solving</span>
                             </div>
@@ -120,48 +141,48 @@
                 </div>
 
                 <!-- Goals Section -->
-                <div class="bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-200 p-8 rounded-2xl shadow-sm space-y-6">
-                    <h3 class="text-2xl font-bold text-purple-900 flex items-center gap-3">
+                <div class="bg-gradient-to-br from-teal-50 to-cyan-50 dark:from-teal-900/30 dark:to-cyan-900/30 border border-teal-200 dark:border-teal-800 p-8 rounded-2xl shadow-sm space-y-6">
+                    <h3 class="text-2xl font-bold text-teal-900 dark:text-teal-300 flex items-center gap-3">
                         <span class="text-3xl">🎯</span>
                         Mục tiêu
                     </h3>
                     <div class="space-y-4">
-                        <div class="bg-white/80 backdrop-blur-sm p-6 rounded-xl border border-purple-100">
-                            <h4 class="font-bold text-purple-800 mb-3 flex items-center gap-2">
-                                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm p-6 rounded-xl border border-teal-100 dark:border-teal-800">
+                            <h4 class="font-bold text-teal-800 dark:text-teal-300 mb-3 flex items-center gap-2">
+                                <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                 Mục tiêu ngắn hạn (6-12 tháng)
                             </h4>
-                            <ul class="space-y-2 text-purple-700">
+                            <ul class="space-y-2 text-teal-700 dark:text-teal-300">
                                 <li class="flex items-start gap-2">
-                                    <span class="text-purple-500 mt-1">•</span>
+                                    <span class="text-teal-500 dark:text-teal-400 mt-1">•</span>
                                     <span>Hoàn thiện nền tảng lập trình Java và JavaScript, nắm vững các khái niệm OOP, Collections, Exception Handling</span>
                                 </li>
                                 <li class="flex items-start gap-2">
-                                    <span class="text-purple-500 mt-1">•</span>
+                                    <span class="text-purple-500 dark:text-purple-400 mt-1">•</span>
                                     <span>Xây dựng portfolio với ít nhất 3-5 dự án thực tế về web development và bảo mật</span>
                                 </li>
                                 <li class="flex items-start gap-2">
-                                    <span class="text-purple-500 mt-1">•</span>
+                                    <span class="text-purple-500 dark:text-purple-400 mt-1">•</span>
                                     <span>Đạt các chứng chỉ liên quan đến lập trình và an ninh mạng (JavaScript Essentials, Networking Basics)</span>
                                 </li>
                             </ul>
                         </div>
-                        <div class="bg-white/80 backdrop-blur-sm p-6 rounded-xl border border-indigo-100">
-                            <h4 class="font-bold text-indigo-800 mb-3 flex items-center gap-2">
-                                <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm p-6 rounded-xl border border-cyan-100 dark:border-cyan-800">
+                            <h4 class="font-bold text-cyan-800 dark:text-cyan-300 mb-3 flex items-center gap-2">
+                                <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                                 Mục tiêu dài hạn (2-3 năm)
                             </h4>
-                            <ul class="space-y-2 text-indigo-700">
+                            <ul class="space-y-2 text-cyan-700 dark:text-cyan-300">
                                 <li class="flex items-start gap-2">
-                                    <span class="text-indigo-500 mt-1">•</span>
+                                    <span class="text-cyan-500 dark:text-cyan-400 mt-1">•</span>
                                     <span>Trở thành Full-stack Developer với chuyên môn về bảo mật web, có khả năng phát triển và bảo vệ ứng dụng</span>
                                 </li>
                                 <li class="flex items-start gap-2">
-                                    <span class="text-indigo-500 mt-1">•</span>
+                                    <span class="text-indigo-500 dark:text-indigo-400 mt-1">•</span>
                                     <span>Tham gia các dự án thực tế về penetration testing, security auditing và vulnerability assessment</span>
                                 </li>
                                 <li class="flex items-start gap-2">
-                                    <span class="text-indigo-500 mt-1">•</span>
+                                    <span class="text-indigo-500 dark:text-indigo-400 mt-1">•</span>
                                     <span>Xây dựng network và cơ hội nghề nghiệp trong lĩnh vực Cybersecurity và Software Development</span>
                                 </li>
                             </ul>
@@ -170,27 +191,27 @@
                 </div>
 
                 <!-- Career Direction Section -->
-                <div class="bg-indigo-50/50 border-l-4 border-indigo-500 p-8 rounded-r-2xl space-y-4">
-                    <h3 class="text-xl font-bold text-indigo-900 flex items-center gap-2">
+                <div class="bg-teal-50/50 dark:bg-teal-900/30 border-l-4 border-teal-500 dark:border-teal-600 p-8 rounded-r-2xl space-y-4">
+                    <h3 class="text-xl font-bold text-teal-900 dark:text-teal-300 flex items-center gap-2">
                         <span class="text-2xl">🚀</span>
                         Định hướng phát triển
                     </h3>
                     <div class="space-y-4">
                         <div>
-                            <h4 class="font-bold text-indigo-800 mb-2">Lập trình & Phát triển</h4>
-                            <p class="text-indigo-700 text-sm leading-relaxed">
+                            <h4 class="font-bold text-teal-800 dark:text-teal-300 mb-2">Lập trình & Phát triển</h4>
+                            <p class="text-teal-700 dark:text-teal-300 text-sm leading-relaxed">
                                 Tiếp tục trau dồi và nâng cao kỹ năng lập trình Java và JavaScript, tập trung vào việc xây dựng các ứng dụng web hiện đại, tối ưu hiệu năng và có trải nghiệm người dùng tốt.
                             </p>
                         </div>
                         <div>
-                            <h4 class="font-bold text-indigo-800 mb-2">An ninh mạng</h4>
-                            <p class="text-indigo-700 text-sm leading-relaxed">
+                            <h4 class="font-bold text-teal-800 dark:text-teal-300 mb-2">An ninh mạng</h4>
+                            <p class="text-teal-700 dark:text-teal-300 text-sm leading-relaxed">
                                 Học sâu hơn về bảo mật web, phòng chống các lỗ hổng phổ biến (XSS, CSRF, SQL Injection), và phát triển tư duy bảo mật trong mọi giai đoạn phát triển phần mềm.
                             </p>
                         </div>
                         <div>
-                            <h4 class="font-bold text-indigo-800 mb-2">Thực hành & Dự án</h4>
-                            <p class="text-indigo-700 text-sm leading-relaxed">
+                            <h4 class="font-bold text-teal-800 dark:text-teal-300 mb-2">Thực hành & Dự án</h4>
+                            <p class="text-teal-700 dark:text-teal-300 text-sm leading-relaxed">
                                 Tham gia các dự án thực tế, hackathons, và các hoạt động cộng đồng liên quan đến an ninh mạng để tích lũy kinh nghiệm và mở rộng network.
                             </p>
                         </div>
@@ -202,18 +223,46 @@
             <div class="space-y-8">
                 <div class="relative">
                     <!-- Image Placeholder - ADD YOUR PHOTO HERE -->
-                    <div class="aspect-[4/5] bg-slate-200 rounded-[2.5rem] overflow-hidden shadow-2xl relative">
-                        <img src="img/profile.jpg" alt="Đoàn Minh Quân" class="w-full h-full object-cover">
+                    <div class="aspect-[4/5] bg-slate-200 dark:bg-slate-700 rounded-[2.5rem] overflow-hidden shadow-2xl relative">
+                        <img src="img/z7378919832109_a5e9dcf6269c7bcfc35c851ca1ef3f87.jpg" alt="Đoàn Minh Quân" class="w-full h-full object-cover">
                         
                         <!-- Quote Overlay -->
-                        <div class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-sm p-8 rounded-3xl shadow-xl">
-                            <p class="text-slate-800 font-medium italic mb-4">
+                        <div class="absolute bottom-6 left-6 right-6 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm p-8 rounded-3xl shadow-xl">
+                            <p class="text-slate-800 dark:text-slate-200 font-medium italic mb-4">
                                 "Sinh viên ngành Công nghệ thông tin, đam mê học hỏi và chia sẻ kiến thức về lập trình."
                             </p>
                             <div class="space-y-1">
-                                <p class="text-indigo-600 font-bold text-lg leading-tight">Đoàn Minh Quân</p>
-                                <p class="text-slate-500 text-sm font-semibold">MSSV: 2280602572</p>
-                                <p class="text-slate-400 text-xs uppercase tracking-wider font-bold">Lớp: 22DTHE4</p>
+                                <p class="text-teal-600 dark:text-teal-400 font-bold text-lg leading-tight">Đoàn Minh Quân</p>
+                                <p class="text-slate-500 dark:text-slate-400 text-sm font-semibold">MSSV: 2280602572</p>
+                                <p class="text-slate-400 dark:text-slate-500 text-xs uppercase tracking-wider font-bold">Lớp: 22DTHE4</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="bg-white dark:bg-slate-800 border border-teal-100 dark:border-teal-800 p-8 rounded-2xl shadow-sm space-y-6">
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100 flex items-center gap-3">
+                        <span class="text-3xl">📞</span>
+                        Thông tin liên hệ
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 p-4 bg-teal-50 dark:bg-teal-900/30 rounded-xl border border-teal-100 dark:border-teal-800 hover:bg-teal-100 dark:hover:bg-teal-900/50 transition-colors">
+                            <div class="w-12 h-12 bg-teal-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                                📱
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold mb-1">Số điện thoại</p>
+                                <a href="tel:0913998757" class="text-teal-700 dark:text-teal-400 font-bold text-lg hover:text-teal-800 dark:hover:text-teal-300 transition-colors">0913998757</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 p-4 bg-cyan-50 dark:bg-cyan-900/30 rounded-xl border border-cyan-100 dark:border-cyan-800 hover:bg-cyan-100 dark:hover:bg-cyan-900/50 transition-colors">
+                            <div class="w-12 h-12 bg-cyan-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                                ✉️
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold mb-1">Email</p>
+                                <a href="mailto:doanminhquan969@gmail.com" class="text-cyan-700 dark:text-cyan-400 font-bold text-lg hover:text-cyan-800 dark:hover:text-cyan-300 transition-colors break-all">doanminhquan969@gmail.com</a>
                             </div>
                         </div>
                     </div>
@@ -221,59 +270,84 @@
 
                 <!-- Social Links -->
                 <div class="flex gap-4 justify-center">
-                    <a href="#" class="bg-slate-100 hover:bg-slate-200 px-8 py-3 rounded-xl font-semibold transition-all">GitHub</a>
-                    <a href="#" class="bg-slate-100 hover:bg-slate-200 px-8 py-3 rounded-xl font-semibold transition-all">LinkedIn</a>
-                    <a href="#" class="bg-slate-100 hover:bg-slate-200 px-8 py-3 rounded-xl font-semibold transition-all">Facebook</a>
+                    <a href="#" class="bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 px-8 py-3 rounded-xl font-semibold text-slate-700 dark:text-slate-300 transition-all">GitHub</a>
+                    <a href="#" class="bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 px-8 py-3 rounded-xl font-semibold text-slate-700 dark:text-slate-300 transition-all">LinkedIn</a>
+                    <a href="#" class="bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 px-8 py-3 rounded-xl font-semibold text-slate-700 dark:text-slate-300 transition-all">Facebook</a>
                 </div>
             </div>
 
         </div>
     </main>
 
-    <footer class="bg-white border-t border-slate-100 pt-20 pb-12">
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 pt-20 pb-12">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
                 <!-- Brand Section -->
                 <div class="col-span-1 md:col-span-2 space-y-6">
-                    <a href="index.html" class="text-2xl font-bold tracking-tight text-indigo-600 italic">Doan Minh Quan Blog.</a>
-                    <p class="text-slate-500 max-w-sm leading-relaxed">
+                    <a href="index.html" class="text-2xl font-bold tracking-tight bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-400 dark:to-cyan-400 bg-clip-text text-transparent italic">Doan Minh Quan Blog.</a>
+                    <p class="text-slate-500 dark:text-slate-400 max-w-sm leading-relaxed">
                         Nơi chia sẻ hành trình học tập, kinh nghiệm thực chiến về lập trình và an ninh mạng của một sinh viên CNTT.
                     </p>
                 </div>
 
                 <!-- Navigation Section -->
                 <div class="space-y-6">
-                    <h4 class="text-slate-900 font-bold uppercase tracking-wider text-sm">Điều hướng</h4>
+                    <h4 class="text-slate-900 dark:text-slate-100 font-bold uppercase tracking-wider text-sm">Điều hướng</h4>
                     <ul class="space-y-4">
-                        <li><a href="index.html" class="text-slate-500 hover:text-indigo-600 transition-colors">Trang chủ</a></li>
-                        <li><a href="index.html#blog" class="text-slate-500 hover:text-indigo-600 transition-colors">Bài viết</a></li>
-                        <li><a href="profile.html" class="text-slate-500 hover:text-indigo-600 transition-colors">Giới thiệu</a></li>
+                        <li><a href="index.html" class="text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">Trang chủ</a></li>
+                        <li><a href="index.html#blog" class="text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">Bài viết</a></li>
+                        <li><a href="profile.html" class="text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">Giới thiệu</a></li>
                     </ul>
                 </div>
 
                 <!-- Contact Section -->
                 <div class="space-y-6">
-                    <h4 class="text-slate-900 font-bold uppercase tracking-wider text-sm">Kết nối</h4>
+                    <h4 class="text-slate-900 dark:text-slate-100 font-bold uppercase tracking-wider text-sm">Kết nối</h4>
                     <ul class="space-y-4">
-                        <li><a href="#" class="text-slate-500 hover:text-indigo-600 transition-colors">GitHub</a></li>
-                        <li><a href="#" class="text-slate-500 hover:text-indigo-600 transition-colors">LinkedIn</a></li>
-                        <li><a href="#" class="text-slate-500 hover:text-indigo-600 transition-colors">Facebook</a></li>
+                        <li><a href="#" class="text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">GitHub</a></li>
+                        <li><a href="#" class="text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">LinkedIn</a></li>
+                        <li><a href="#" class="text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">Facebook</a></li>
                     </ul>
                 </div>
             </div>
 
             <!-- Bottom Section -->
-            <div class="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
-                <p class="text-slate-400 text-sm italic">
+            <div class="pt-8 border-t border-slate-100 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-slate-400 dark:text-slate-500 text-sm italic">
                     &copy; 2025 Doan Minh Quan. Tất cả quyền được bảo lưu.
                 </p>
                 <div class="flex gap-8">
-                    <a href="#" class="text-slate-400 hover:text-indigo-600 text-sm transition-colors">Chính sách bảo mật</a>
-                    <a href="#" class="text-slate-400 hover:text-indigo-600 text-sm transition-colors">Điều khoản</a>
+                    <a href="#" class="text-slate-400 dark:text-slate-500 hover:text-teal-600 dark:hover:text-teal-400 text-sm transition-colors">Chính sách bảo mật</a>
+                    <a href="#" class="text-slate-400 dark:text-slate-500 hover:text-teal-600 dark:hover:text-teal-400 text-sm transition-colors">Điều khoản</a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Dark Mode Toggle
+        (function() {
+            function initDarkMode() {
+                const themeToggle = document.getElementById('themeToggle');
+                if (!themeToggle) return;
+
+                themeToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const html = document.documentElement;
+                    const isDark = html.classList.toggle('dark');
+                    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                });
+            }
+            
+            // Initialize when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initDarkMode);
+            } else {
+                initDarkMode();
+            }
+        })();
+    </script>
 
 </body>
 </html>

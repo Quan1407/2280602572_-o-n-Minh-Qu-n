@@ -30,7 +30,12 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="alternate icon" href="favicon.ico">
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    <script>
+        // Configure Tailwind for dark mode (class-based)
+        tailwind.config = tailwind.config || {};
+        tailwind.config.darkMode = 'class';
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
@@ -40,8 +45,17 @@
         #modalContainer { transition: transform 0.3s ease-out; }
         #imageModal.hidden #modalContainer { transform: scale(0.95); }
     </style>
+    <script>
+        // Dark mode initialization - must run before Tailwind loads
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
 </head>
-<body class="bg-[#f8fafc] text-slate-800 leading-relaxed min-h-screen">
+<body class="bg-gradient-to-br from-slate-50 via-cyan-50/30 to-teal-50/20 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-slate-800 dark:text-slate-100 leading-relaxed min-h-screen transition-colors duration-300">
 
     <!-- Modal Phóng to Ảnh (Theo mẫu mới) -->
     <div id="imageModal" class="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4" onclick="closeModal()">
@@ -60,17 +74,27 @@
         </div>
     </div>
 
-    <nav class="sticky top-0 bg-white/80 backdrop-blur-md z-50 py-6">
+    <nav class="sticky top-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-50 py-6 border-b border-slate-200 dark:border-slate-700">
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <div class="bg-slate-50/50 border border-slate-100 rounded-full px-2 py-1.5 flex items-center gap-1 shadow-sm">
-                <a href="index.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Trang chủ</a>
-                <a href="index.html#blog" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Bài viết</a>
-                <a href="projects.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Dự án</a>
-                <a href="certificates.html" class="px-6 py-2 rounded-full bg-white text-indigo-600 font-semibold shadow-sm text-sm transition-all">Chứng chỉ</a>
-                <a href="profile.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Giới thiệu</a>
-                <a href="ai-assistant.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Trợ lý AI</a>
+            <div class="bg-white/70 dark:bg-slate-800/70 border border-cyan-100 dark:border-slate-700 rounded-2xl px-2 py-1.5 flex items-center gap-1 shadow-md backdrop-blur-sm">
+                <a href="index.html" class="px-6 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-700 font-medium text-sm transition-all">Home</a>
+                <a href="index.html#blog" class="px-6 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-700 font-medium text-sm transition-all">Articles</a>
+                <a href="projects.html" class="px-6 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-700 font-medium text-sm transition-all">Projects</a>
+                <a href="certificates.html" class="px-6 py-2 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold shadow-lg text-sm transition-all hover:from-teal-600 hover:to-cyan-600">Certificates</a>
+                <a href="profile.html" class="px-6 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-700 font-medium text-sm transition-all">About</a>
+                <a href="ai-assistant.html" class="px-6 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-700 font-medium text-sm transition-all">AI Assistant</a>
             </div>
-            <a href="mailto:quan.dm@student.edu.vn" class="bg-[#0f172a] text-white px-8 py-3 rounded-2xl font-bold hover:bg-slate-800 transition-all text-sm tracking-wide">Liên hệ</a>
+            <div class="flex items-center gap-4">
+                <button id="themeToggle" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center transition-all" aria-label="Toggle dark mode">
+                    <svg id="sunIcon" class="w-5 h-5 text-slate-700 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <svg id="moonIcon" class="w-5 h-5 text-slate-300 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </button>
+                <a href="mailto:doanminhquan969@gmail.com" class="bg-gradient-to-r from-teal-600 to-cyan-600 text-white px-8 py-3 rounded-2xl font-bold hover:from-teal-700 hover:to-cyan-700 transition-all text-sm tracking-wide shadow-lg hover:shadow-xl">Contact</a>
+            </div>
         </div>
     </nav>
 
@@ -85,9 +109,9 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto text-left">
             
             <!-- Chứng chỉ 1 -->
-            <div class="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer" onclick="openModal('img/Introduction to Cybersecurity.jpg.png', 'Introduction to Cybersecurity')">
-                <div class="aspect-[1.6/1] bg-[#eef2ff] relative overflow-hidden flex items-center justify-center p-8">
-                    <img src="img/Introduction to Cybersecurity.jpg.png" alt="Introduction to Cybersecurity" class="max-h-full max-w-full shadow-2xl group-hover:scale-105 transition-transform duration-500 rounded-lg">
+            <div class="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer" onclick="openModal('img/Picture1.png', 'Introduction to Cybersecurity')">
+                <div class="aspect-[1.6/1] bg-gradient-to-br from-teal-50 via-cyan-50 to-teal-50 relative overflow-hidden flex items-center justify-center p-8">
+                    <img src="img/Picture1.png" alt="Introduction to Cybersecurity" class="max-h-full max-w-full shadow-2xl group-hover:scale-105 transition-transform duration-500 rounded-lg">
                     <div class="absolute bottom-6 left-6">
                         <span class="text-white text-sm font-bold bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             Click để xem chi tiết →
@@ -96,7 +120,7 @@
                 </div>
                 <div class="p-10 space-y-6">
                     <div>
-                        <h3 class="text-3xl font-bold text-indigo-600 mb-2 leading-tight">Introduction to Cybersecurity</h3>
+                        <h3 class="text-3xl font-bold text-teal-600 mb-2 leading-tight">Introduction to Cybersecurity</h3>
                         <p class="text-slate-500 font-semibold flex items-center gap-2">
                             Cisco Networking Academy <span class="text-slate-300">•</span> 2024
                         </p>
@@ -105,18 +129,18 @@
                         Chứng chỉ về các khái niệm cơ bản của an ninh mạng, bao gồm bảo mật dữ liệu, mã hóa và các mối đe dọa trên mạng.
                     </p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-4 py-1.5 bg-indigo-50 text-indigo-600 rounded-full text-xs font-bold">Cybersecurity</span>
-                        <span class="px-4 py-1.5 bg-indigo-50 text-indigo-600 rounded-full text-xs font-bold">Network Security</span>
-                        <span class="px-4 py-1.5 bg-indigo-50 text-indigo-600 rounded-full text-xs font-bold">Data Protection</span>
+                        <span class="px-4 py-1.5 bg-teal-50 text-teal-600 rounded-full text-xs font-bold">Cybersecurity</span>
+                        <span class="px-4 py-1.5 bg-teal-50 text-teal-600 rounded-full text-xs font-bold">Network Security</span>
+                        <span class="px-4 py-1.5 bg-teal-50 text-teal-600 rounded-full text-xs font-bold">Data Protection</span>
                         <span class="px-4 py-1.5 bg-slate-50 text-slate-400 rounded-full text-xs font-bold">+1 more</span>
                     </div>
                 </div>
             </div>
 
             <!-- Chứng chỉ 2 -->
-            <div class="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer" onclick="openModal('img/JavaScript Essentials 1.jpg.png', 'JavaScript Essentials 1')">
-                <div class="aspect-[1.6/1] bg-[#fff7ed] relative overflow-hidden flex items-center justify-center p-8">
-                    <img src="img/JavaScript Essentials 1.jpg.png" alt="JavaScript Essentials 1" class="max-h-full max-w-full shadow-2xl group-hover:scale-105 transition-transform duration-500 rounded-lg">
+            <div class="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer" onclick="openModal('img/Picture2.png', 'JavaScript Essentials 1')">
+                <div class="aspect-[1.6/1] bg-gradient-to-br from-cyan-50 to-teal-50 relative overflow-hidden flex items-center justify-center p-8">
+                    <img src="img/Picture2.png" alt="JavaScript Essentials 1" class="max-h-full max-w-full shadow-2xl group-hover:scale-105 transition-transform duration-500 rounded-lg">
                     <div class="absolute bottom-6 left-6">
                         <span class="text-white text-sm font-bold bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             Click để xem chi tiết →
@@ -125,7 +149,7 @@
                 </div>
                 <div class="p-10 space-y-6">
                     <div>
-                        <h3 class="text-3xl font-bold text-amber-600 mb-2 leading-tight">JavaScript Essentials 1</h3>
+                        <h3 class="text-3xl font-bold text-cyan-600 mb-2 leading-tight">JavaScript Essentials 1</h3>
                         <p class="text-slate-500 font-semibold flex items-center gap-2">
                             Cisco Networking Academy <span class="text-slate-300">•</span> 2025
                         </p>
@@ -134,17 +158,17 @@
                         Nắm vững các kiến thức cơ bản về JavaScript, bao gồm biến, kiểu dữ liệu, cấu trúc điều khiển và hàm.
                     </p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-4 py-1.5 bg-amber-50 text-amber-600 rounded-full text-xs font-bold">JavaScript</span>
-                        <span class="px-4 py-1.5 bg-amber-50 text-amber-600 rounded-full text-xs font-bold">Programming</span>
-                        <span class="px-4 py-1.5 bg-amber-50 text-amber-600 rounded-full text-xs font-bold">Web Development</span>
+                        <span class="px-4 py-1.5 bg-cyan-50 text-cyan-600 rounded-full text-xs font-bold">JavaScript</span>
+                        <span class="px-4 py-1.5 bg-cyan-50 text-cyan-600 rounded-full text-xs font-bold">Programming</span>
+                        <span class="px-4 py-1.5 bg-cyan-50 text-cyan-600 rounded-full text-xs font-bold">Web Development</span>
                     </div>
                 </div>
             </div>
 
             <!-- Chứng chỉ 3 -->
-            <div class="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer" onclick="openModal('img/JavaScript Essentials 2.jpg.png', 'JavaScript Essentials 2')">
-                <div class="aspect-[1.6/1] bg-[#fff7ed] relative overflow-hidden flex items-center justify-center p-8">
-                    <img src="img/JavaScript Essentials 2.jpg.png" alt="JavaScript Essentials 2" class="max-h-full max-w-full shadow-2xl group-hover:scale-105 transition-transform duration-500 rounded-lg">
+            <div class="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer" onclick="openModal('img/Picture3.png', 'JavaScript Essentials 2')">
+                <div class="aspect-[1.6/1] bg-gradient-to-br from-cyan-50 to-teal-50 relative overflow-hidden flex items-center justify-center p-8">
+                    <img src="img/Picture3.png" alt="JavaScript Essentials 2" class="max-h-full max-w-full shadow-2xl group-hover:scale-105 transition-transform duration-500 rounded-lg">
                     <div class="absolute bottom-6 left-6">
                         <span class="text-white text-sm font-bold bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             Click để xem chi tiết →
@@ -153,7 +177,7 @@
                 </div>
                 <div class="p-10 space-y-6">
                     <div>
-                        <h3 class="text-3xl font-bold text-amber-600 mb-2 leading-tight">JavaScript Essentials 2</h3>
+                        <h3 class="text-3xl font-bold text-cyan-600 mb-2 leading-tight">JavaScript Essentials 2</h3>
                         <p class="text-slate-500 font-semibold flex items-center gap-2">
                             Cisco Networking Academy <span class="text-slate-300">•</span> 2025
                         </p>
@@ -162,17 +186,17 @@
                         Nâng cao kỹ năng JavaScript với các khái niệm về hướng đối tượng, xử lý bất đồng bộ và API trình duyệt.
                     </p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-4 py-1.5 bg-amber-50 text-amber-600 rounded-full text-xs font-bold">ES6+</span>
-                        <span class="px-4 py-1.5 bg-amber-50 text-amber-600 rounded-full text-xs font-bold">OOP JS</span>
-                        <span class="px-4 py-1.5 bg-amber-50 text-amber-600 rounded-full text-xs font-bold">Async/Await</span>
+                        <span class="px-4 py-1.5 bg-cyan-50 text-cyan-600 rounded-full text-xs font-bold">ES6+</span>
+                        <span class="px-4 py-1.5 bg-cyan-50 text-cyan-600 rounded-full text-xs font-bold">OOP JS</span>
+                        <span class="px-4 py-1.5 bg-cyan-50 text-cyan-600 rounded-full text-xs font-bold">Async/Await</span>
                     </div>
                 </div>
             </div>
 
             <!-- Chứng chỉ 4 -->
-            <div class="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer" onclick="openModal('img/Networking Basics.jpg.png', 'Networking Basics')">
-                <div class="aspect-[1.6/1] bg-[#f0f9ff] relative overflow-hidden flex items-center justify-center p-8">
-                    <img src="img/Networking Basics.jpg.png" alt="Networking Basics" class="max-h-full max-w-full shadow-2xl group-hover:scale-105 transition-transform duration-500 rounded-lg">
+            <div class="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer" onclick="openModal('img/Picture4.png', 'Networking Basics')">
+                <div class="aspect-[1.6/1] bg-gradient-to-br from-teal-50 to-cyan-50 relative overflow-hidden flex items-center justify-center p-8">
+                    <img src="img/Picture4.png" alt="Networking Basics" class="max-h-full max-w-full shadow-2xl group-hover:scale-105 transition-transform duration-500 rounded-lg">
                     <div class="absolute bottom-6 left-6">
                         <span class="text-white text-sm font-bold bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             Click để xem chi tiết →
@@ -181,7 +205,7 @@
                 </div>
                 <div class="p-10 space-y-6">
                     <div>
-                        <h3 class="text-3xl font-bold text-blue-600 mb-2 leading-tight">Networking Basics</h3>
+                        <h3 class="text-3xl font-bold text-teal-600 mb-2 leading-tight">Networking Basics</h3>
                         <p class="text-slate-500 font-semibold flex items-center gap-2">
                             Cisco Networking Academy <span class="text-slate-300">•</span> 2025
                         </p>
@@ -190,39 +214,13 @@
                         Kiến thức cơ bản về hạ tầng mạng, giao thức TCP/IP, định tuyến và các thiết bị kết nối mạng.
                     </p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-bold">Networking</span>
-                        <span class="px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-bold">TCP/IP</span>
-                        <span class="px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-bold">Infrastructure</span>
+                        <span class="px-4 py-1.5 bg-teal-50 text-teal-600 rounded-full text-xs font-bold">Networking</span>
+                        <span class="px-4 py-1.5 bg-teal-50 text-teal-600 rounded-full text-xs font-bold">TCP/IP</span>
+                        <span class="px-4 py-1.5 bg-teal-50 text-teal-600 rounded-full text-xs font-bold">Infrastructure</span>
                     </div>
                 </div>
             </div>
 
-        </div>
-
-        <!-- Statistics Section - Modern Individual Cards -->
-        <div class="max-w-6xl mx-auto mt-20">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <!-- Thống kê 1 -->
-                <div class="bg-indigo-50/50 rounded-[2rem] p-8 text-center border border-indigo-100/50 hover:bg-indigo-50 transition-colors">
-                    <p class="text-4xl font-black text-indigo-600 mb-2">4</p>
-                    <p class="text-indigo-900/40 font-bold text-[10px] uppercase tracking-[0.2em]">Chứng chỉ</p>
-                </div>
-                <!-- Thống kê 2 -->
-                <div class="bg-purple-50/50 rounded-[2rem] p-8 text-center border border-purple-100/50 hover:bg-purple-50 transition-colors">
-                    <p class="text-4xl font-black text-purple-600 mb-2">16</p>
-                    <p class="text-purple-900/40 font-bold text-[10px] uppercase tracking-[0.2em]">Kỹ năng</p>
-                </div>
-                <!-- Thống kê 3 -->
-                <div class="bg-emerald-50/50 rounded-[2rem] p-8 text-center border border-emerald-100/50 hover:bg-emerald-50 transition-colors">
-                    <p class="text-4xl font-black text-emerald-600 mb-2">100%</p>
-                    <p class="text-emerald-900/40 font-bold text-[10px] uppercase tracking-[0.2em]">Hoàn thành</p>
-                </div>
-                <!-- Thống kê 4 -->
-                <div class="bg-blue-50/50 rounded-[2rem] p-8 text-center border border-blue-100/50 hover:bg-blue-50 transition-colors">
-                    <p class="text-4xl font-black text-blue-600 mb-2">2024</p>
-                    <p class="text-blue-900/40 font-bold text-[10px] uppercase tracking-[0.2em]">Năm đạt được</p>
-                </div>
-            </div>
         </div>
     </main>
 
@@ -230,7 +228,7 @@
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
                 <div class="col-span-1 md:col-span-2 space-y-6">
-                    <a href="index.html" class="text-2xl font-bold tracking-tight text-indigo-600 italic">Doan Minh Quan Blog.</a>
+                    <a href="index.html" class="text-2xl font-bold tracking-tight bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent italic">Doan Minh Quan Blog.</a>
                     <p class="text-slate-500 max-w-sm leading-relaxed">
                         Nơi chia sẻ hành trình học tập, kinh nghiệm thực chiến về lập trình và an ninh mạng của một sinh viên CNTT.
                     </p>
@@ -238,17 +236,17 @@
                 <div class="space-y-6">
                     <h4 class="text-slate-900 font-bold uppercase tracking-wider text-sm">Điều hướng</h4>
                     <ul class="space-y-4">
-                        <li><a href="index.html" class="text-slate-500 hover:text-indigo-600 transition-colors">Trang chủ</a></li>
-                        <li><a href="index.html#blog" class="text-slate-500 hover:text-indigo-600 transition-colors">Bài viết</a></li>
-                        <li><a href="profile.html" class="text-slate-500 hover:text-indigo-600 transition-colors">Giới thiệu</a></li>
+                        <li><a href="index.html" class="text-slate-500 hover:text-teal-600 transition-colors">Trang chủ</a></li>
+                        <li><a href="index.html#blog" class="text-slate-500 hover:text-teal-600 transition-colors">Bài viết</a></li>
+                        <li><a href="profile.html" class="text-slate-500 hover:text-teal-600 transition-colors">Giới thiệu</a></li>
                     </ul>
                 </div>
                 <div class="space-y-6">
                     <h4 class="text-slate-900 font-bold uppercase tracking-wider text-sm">Kết nối</h4>
                     <ul class="space-y-4">
-                        <li><a href="#" class="text-slate-500 hover:text-indigo-600 transition-colors">GitHub</a></li>
-                        <li><a href="#" class="text-slate-500 hover:text-indigo-600 transition-colors">LinkedIn</a></li>
-                        <li><a href="#" class="text-slate-500 hover:text-indigo-600 transition-colors">Facebook</a></li>
+                        <li><a href="#" class="text-slate-500 hover:text-teal-600 transition-colors">GitHub</a></li>
+                        <li><a href="#" class="text-slate-500 hover:text-teal-600 transition-colors">LinkedIn</a></li>
+                        <li><a href="#" class="text-slate-500 hover:text-teal-600 transition-colors">Facebook</a></li>
                     </ul>
                 </div>
             </div>
@@ -257,8 +255,8 @@
                     &copy; 2025 Doan Minh Quan. Tất cả quyền được bảo lưu.
                 </p>
                 <div class="flex gap-8">
-                    <a href="#" class="text-slate-400 hover:text-indigo-600 text-sm transition-colors">Chính sách bảo mật</a>
-                    <a href="#" class="text-slate-400 hover:text-indigo-600 text-sm transition-colors">Điều khoản</a>
+                    <a href="#" class="text-slate-400 hover:text-teal-600 text-sm transition-colors">Chính sách bảo mật</a>
+                    <a href="#" class="text-slate-400 hover:text-teal-600 text-sm transition-colors">Điều khoản</a>
                 </div>
             </div>
         </div>
@@ -286,6 +284,29 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeModal();
         });
+
+        // Dark Mode Toggle
+        (function() {
+            function initDarkMode() {
+                const themeToggle = document.getElementById('themeToggle');
+                if (!themeToggle) return;
+
+                themeToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const html = document.documentElement;
+                    const isDark = html.classList.toggle('dark');
+                    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                });
+            }
+            
+            // Initialize when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initDarkMode);
+            } else {
+                initDarkMode();
+            }
+        })();
     </script>
 
 </body>

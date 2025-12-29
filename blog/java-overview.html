@@ -38,19 +38,38 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>body { font-family: 'Inter', sans-serif; }</style>
+    <script>
+        // Dark mode initialization
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
 </head>
-<body class="bg-[#f8fafc] text-slate-800 leading-relaxed">
-    <nav class="sticky top-0 bg-white/80 backdrop-blur-md z-50 py-6">
+<body class="bg-[#f8fafc] dark:bg-slate-900 text-slate-800 dark:text-slate-100 leading-relaxed transition-colors duration-300">
+    <nav class="sticky top-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-50 py-6 border-b border-slate-200 dark:border-slate-700">
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <div class="bg-slate-50/50 border border-slate-100 rounded-full px-2 py-1.5 flex items-center gap-1 shadow-sm">
-                <a href="../index.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Trang chủ</a>
-                <a href="../index.html#blog" class="px-6 py-2 rounded-full bg-white text-indigo-600 font-semibold shadow-sm text-sm transition-all">Bài viết</a>
-                <a href="../projects.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Dự án</a>
-                <a href="../certificates.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Chứng chỉ</a>
-                <a href="../profile.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Giới thiệu</a>
-                <a href="../ai-assistant.html" class="px-6 py-2 rounded-full text-slate-600 hover:text-indigo-600 font-medium text-sm transition-all">Trợ lý AI</a>
+            <div class="bg-white/70 dark:bg-slate-800/70 border border-cyan-100 dark:border-slate-700 rounded-2xl px-2 py-1.5 flex items-center gap-1 shadow-md backdrop-blur-sm">
+                <a href="../index.html" class="px-6 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-700 font-medium text-sm transition-all">Home</a>
+                <a href="../index.html#blog" class="px-6 py-2 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold shadow-lg text-sm transition-all hover:from-teal-600 hover:to-cyan-600">Articles</a>
+                <a href="../projects.html" class="px-6 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-700 font-medium text-sm transition-all">Projects</a>
+                <a href="../certificates.html" class="px-6 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-700 font-medium text-sm transition-all">Certificates</a>
+                <a href="../profile.html" class="px-6 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-700 font-medium text-sm transition-all">About</a>
+                <a href="../ai-assistant.html" class="px-6 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-700 font-medium text-sm transition-all">AI Assistant</a>
             </div>
-            <a href="mailto:quan.dm@student.edu.vn" class="bg-[#0f172a] text-white px-8 py-3 rounded-2xl font-bold hover:bg-slate-800 transition-all text-sm tracking-wide">Liên hệ</a>
+            <div class="flex items-center gap-4">
+                <button id="themeToggle" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center transition-all" aria-label="Toggle dark mode">
+                    <svg id="sunIcon" class="w-5 h-5 text-slate-700 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <svg id="moonIcon" class="w-5 h-5 text-slate-300 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </button>
+                <a href="mailto:doanminhquan969@gmail.com" class="bg-gradient-to-r from-teal-600 to-cyan-600 text-white px-8 py-3 rounded-2xl font-bold hover:from-teal-700 hover:to-cyan-700 transition-all text-sm tracking-wide shadow-lg hover:shadow-xl">Contact</a>
+            </div>
         </div>
     </nav>
 
@@ -97,14 +116,158 @@
 
         <div class="prose prose-indigo prose-lg text-slate-600 max-w-none space-y-8 bg-white p-12 rounded-[2.5rem] shadow-sm border border-slate-100">
             <p class="text-xl leading-relaxed">
-                Java là một trong những ngôn ngữ lập trình phổ biến nhất hiện nay và được sử dụng rộng rãi trong nhiều lĩnh vực khác nhau như phát triển phần mềm, web, mobile và hệ thống doanh nghiệp. Java được phát triển với mục tiêu <span class="text-slate-900 font-bold">“Write Once, Run Anywhere”</span>, tức là chương trình có thể chạy trên nhiều nền tảng khác nhau mà không cần chỉnh sửa nhiều.
+                Java là một trong những ngôn ngữ lập trình phổ biến nhất hiện nay và được sử dụng rộng rãi trong nhiều lĩnh vực khác nhau như phát triển phần mềm, web, mobile và hệ thống doanh nghiệp. Java được phát triển với mục tiêu <span class="text-slate-900 font-bold">"Write Once, Run Anywhere"</span>, tức là chương trình có thể chạy trên nhiều nền tảng khác nhau mà không cần chỉnh sửa nhiều.
             </p>
 
-            <div class="space-y-4">
+            <div class="space-y-6">
                 <h2 class="text-3xl font-bold text-slate-900">Tại sao Java lại được ưa chuộng?</h2>
                 <p>
                     Một trong những ưu điểm lớn nhất của Java là <span class="text-slate-900 font-semibold">tính ổn định và bảo mật cao</span>. Java sử dụng máy ảo JVM để thực thi chương trình, giúp giảm rủi ro liên quan đến phần cứng và hệ điều hành. Ngoài ra, Java còn có cộng đồng lớn và thư viện phong phú, giúp lập trình viên dễ dàng học tập và phát triển dự án.
                 </p>
+                <p>
+                    Java được thiết kế với triết lý <span class="text-slate-900 font-semibold">"Write Once, Run Anywhere" (WORA)</span>, có nghĩa là bạn chỉ cần viết code một lần và có thể chạy trên bất kỳ nền tảng nào có cài đặt JVM. Điều này giúp tiết kiệm thời gian và chi phí phát triển đáng kể, đặc biệt quan trọng trong môi trường doanh nghiệp với nhiều hệ thống khác nhau.
+                </p>
+            </div>
+
+            <div class="space-y-6">
+                <h2 class="text-3xl font-bold text-slate-900 pt-8">Kiến trúc Java: JVM, JRE và JDK</h2>
+                <p>
+                    Để hiểu rõ Java, bạn cần nắm vững ba thành phần cốt lõi của hệ sinh thái Java:
+                </p>
+                
+                <div class="space-y-4">
+                    <div class="bg-slate-50 p-6 rounded-2xl border-l-4 border-indigo-500">
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">1. JDK (Java Development Kit)</h3>
+                        <p>
+                            JDK là bộ công cụ phát triển đầy đủ nhất, bao gồm JRE và các công cụ phát triển như trình biên dịch (javac), trình gỡ lỗi (jdb), và các thư viện phát triển. JDK cần thiết khi bạn muốn <span class="text-slate-900 font-semibold">phát triển ứng dụng Java</span>. Hiện tại, phiên bản JDK mới nhất là Java 22, được phát hành vào tháng 3/2024 với nhiều tính năng mới như Pattern Matching, Record Patterns, và Virtual Threads.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-2xl border-l-4 border-purple-500">
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">2. JRE (Java Runtime Environment)</h3>
+                        <p>
+                            JRE bao gồm JVM và các thư viện cần thiết để <span class="text-slate-900 font-semibold">chạy ứng dụng Java</span>. Nếu bạn chỉ cần chạy các chương trình Java mà không phát triển, JRE là đủ. Tuy nhiên, từ Java 11 trở đi, Oracle đã ngừng phát hành JRE riêng biệt, và JDK đã bao gồm cả JRE.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-2xl border-l-4 border-cyan-500">
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">3. JVM (Java Virtual Machine)</h3>
+                        <p>
+                            JVM là trái tim của Java, một máy ảo thực thi bytecode. JVM có nhiệm vụ <span class="text-slate-900 font-semibold">biên dịch Just-In-Time (JIT)</span> bytecode thành mã máy tương ứng với từng nền tảng. Quá trình này diễn ra như sau:
+                        </p>
+                        <ul class="list-disc list-inside space-y-2 mt-3 ml-4 text-slate-700">
+                            <li>Bạn viết code Java (.java)</li>
+                            <li>Trình biên dịch javac biên dịch thành bytecode (.class)</li>
+                            <li>JVM đọc bytecode và thực thi trên nền tảng cụ thể</li>
+                            <li>JIT compiler tối ưu hóa hiệu năng trong quá trình chạy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <h2 class="text-3xl font-bold text-slate-900 pt-8">Ưu điểm nổi bật của Java</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gradient-to-br from-indigo-50 to-purple-50 p-6 rounded-2xl border border-indigo-100">
+                        <h3 class="text-lg font-bold text-indigo-900 mb-3 flex items-center gap-2">
+                            <span class="text-2xl">🔒</span>
+                            Bảo mật cao
+                        </h3>
+                        <p class="text-slate-700">
+                            Java có mô hình bảo mật mạnh mẽ với Security Manager, sandboxing, và kiểm tra bytecode. Điều này giúp ngăn chặn các lỗ hổng bảo mật phổ biến như buffer overflow và truy cập bộ nhớ trái phép.
+                        </p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-emerald-50 to-teal-50 p-6 rounded-2xl border border-emerald-100">
+                        <h3 class="text-lg font-bold text-emerald-900 mb-3 flex items-center gap-2">
+                            <span class="text-2xl">⚡</span>
+                            Hiệu năng tốt
+                        </h3>
+                        <p class="text-slate-700">
+                            Với JIT compiler và Garbage Collector thông minh, Java có thể đạt hiệu năng gần bằng các ngôn ngữ biên dịch như C++ trong nhiều trường hợp, đặc biệt là các ứng dụng chạy lâu dài.
+                        </p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-2xl border border-amber-100">
+                        <h3 class="text-lg font-bold text-amber-900 mb-3 flex items-center gap-2">
+                            <span class="text-2xl">🌐</span>
+                            Đa nền tảng
+                        </h3>
+                        <p class="text-slate-700">
+                            Java chạy trên hơn 3 tỷ thiết bị trên toàn thế giới, từ máy chủ Linux, Windows, macOS đến các thiết bị di động Android và các hệ thống nhúng.
+                        </p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-rose-50 to-pink-50 p-6 rounded-2xl border border-rose-100">
+                        <h3 class="text-lg font-bold text-rose-900 mb-3 flex items-center gap-2">
+                            <span class="text-2xl">👥</span>
+                            Cộng đồng lớn
+                        </h3>
+                        <p class="text-slate-700">
+                            Với hơn 9 triệu lập trình viên Java trên toàn thế giới, bạn sẽ luôn tìm thấy sự hỗ trợ, thư viện mã nguồn mở phong phú và tài liệu học tập đa dạng.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <h2 class="text-3xl font-bold text-slate-900 pt-8">Ứng dụng thực tế của Java</h2>
+                <p>
+                    Java được sử dụng rộng rãi trong nhiều lĩnh vực khác nhau:
+                </p>
+
+                <div class="space-y-4">
+                    <div class="flex gap-4 items-start">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center text-indigo-600 font-bold text-xl flex-shrink-0">1</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">Ứng dụng Web (Backend)</h3>
+                            <p class="text-slate-700">
+                                Java là nền tảng chính cho nhiều framework web mạnh mẽ như Spring Boot, Spring MVC, và Jakarta EE. Các công ty lớn như Netflix, Amazon, và LinkedIn sử dụng Java để xây dựng backend của họ. Spring Boot giúp phát triển ứng dụng web nhanh chóng với cấu hình tối thiểu và tích hợp sẵn nhiều tính năng như security, database, và RESTful API.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 items-start">
+                        <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 font-bold text-xl flex-shrink-0">2</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">Ứng dụng Android</h3>
+                            <p class="text-slate-700">
+                                Mặc dù Kotlin đang trở nên phổ biến hơn, Java vẫn là ngôn ngữ chính thức và được sử dụng rộng rãi trong phát triển ứng dụng Android. Hơn 3 tỷ thiết bị Android trên thế giới chạy các ứng dụng được viết bằng Java hoặc tương thích với Java.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 items-start">
+                        <div class="w-12 h-12 bg-cyan-100 rounded-xl flex items-center justify-center text-cyan-600 font-bold text-xl flex-shrink-0">3</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">Hệ thống doanh nghiệp (Enterprise)</h3>
+                            <p class="text-slate-700">
+                                Java Enterprise Edition (Jakarta EE) cung cấp các API và công nghệ để phát triển các ứng dụng doanh nghiệp quy mô lớn. Các hệ thống ngân hàng, tài chính, và quản lý nhân sự thường được xây dựng bằng Java nhờ tính ổn định và bảo mật cao.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 items-start">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 font-bold text-xl flex-shrink-0">4</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">Big Data và Machine Learning</h3>
+                            <p class="text-slate-700">
+                                Các công cụ Big Data phổ biến như Apache Hadoop, Apache Spark, và Apache Kafka đều được viết bằng Java. Ngoài ra, Java cũng được sử dụng trong các framework Machine Learning như Deeplearning4j và Weka.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 items-start">
+                        <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center text-amber-600 font-bold text-xl flex-shrink-0">5</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">Internet of Things (IoT)</h3>
+                            <p class="text-slate-700">
+                                Java ME (Micro Edition) và các phiên bản Java nhẹ được sử dụng trong các thiết bị IoT, cảm biến, và hệ thống nhúng. Tính di động và bảo mật của Java làm cho nó trở thành lựa chọn lý tưởng cho các ứng dụng IoT.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="bg-indigo-50 p-8 rounded-3xl border border-indigo-100">
@@ -112,14 +275,40 @@
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     Lời khuyên cho sinh viên IT
                 </h3>
-                <p class="text-indigo-800">
-                    Đối với sinh viên Công nghệ Thông tin, Java là ngôn ngữ nền tảng quan trọng để rèn luyện tư duy lập trình và lập trình hướng đối tượng.
+                <p class="text-indigo-800 mb-4">
+                    Đối với sinh viên Công nghệ Thông tin, Java là ngôn ngữ nền tảng quan trọng để rèn luyện tư duy lập trình và lập trình hướng đối tượng. Dưới đây là một số gợi ý để bắt đầu học Java hiệu quả:
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-indigo-800 ml-4">
+                    <li><strong>Bắt đầu với cơ bản:</strong> Nắm vững các khái niệm cơ bản như biến, kiểu dữ liệu, vòng lặp, và điều kiện trước khi học OOP.</li>
+                    <li><strong>Thực hành thường xuyên:</strong> Viết code mỗi ngày, bắt đầu với các bài tập đơn giản và dần dần nâng cao độ khó.</li>
+                    <li><strong>Xây dựng dự án thực tế:</strong> Tạo các dự án nhỏ như quản lý thư viện, máy tính, hoặc ứng dụng quản lý sinh viên để áp dụng kiến thức đã học.</li>
+                    <li><strong>Tham gia cộng đồng:</strong> Tham gia các diễn đàn Java, nhóm học tập, và đọc code của các dự án mã nguồn mở.</li>
+                    <li><strong>Học framework:</strong> Sau khi nắm vững Java core, hãy học Spring Boot để phát triển ứng dụng web thực tế.</li>
+                </ul>
+            </div>
+
+            <div class="space-y-6">
+                <h2 class="text-3xl font-bold text-slate-900 pt-8">Tương lai của Java</h2>
+                <p>
+                    Java tiếp tục phát triển mạnh mẽ với các bản cập nhật thường xuyên. Java 22 (phát hành tháng 3/2024) mang đến nhiều tính năng mới như:
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-slate-700 ml-4">
+                    <li><strong>Virtual Threads (Project Loom):</strong> Cho phép tạo hàng triệu thread với chi phí thấp, cải thiện đáng kể hiệu năng cho ứng dụng I/O-intensive.</li>
+                    <li><strong>Pattern Matching:</strong> Giúp code ngắn gọn và dễ đọc hơn khi làm việc với các cấu trúc dữ liệu phức tạp.</li>
+                    <li><strong>Record Patterns:</strong> Mở rộng pattern matching cho records, giúp xử lý dữ liệu immutable hiệu quả hơn.</li>
+                    <li><strong>String Templates (Preview):</strong> Cải thiện cách xử lý chuỗi và giảm nguy cơ lỗ hổng SQL injection.</li>
+                </ul>
+                <p>
+                    Oracle cam kết phát hành phiên bản mới của Java mỗi 6 tháng, với các bản LTS (Long Term Support) mỗi 2-3 năm. Java 21 là bản LTS mới nhất, được hỗ trợ đến năm 2031.
                 </p>
             </div>
 
             <h2 class="text-3xl font-bold text-slate-900 pt-8">Kết luận</h2>
             <p>
-                Với sức mạnh vượt thời gian và khả năng ứng dụng cực kỳ rộng lớn, Java vẫn luôn là lựa chọn hàng đầu cho các hệ thống quy mô lớn. Việc làm chủ Java sẽ mở ra rất nhiều cơ hội nghề nghiệp trong tương lai cho bạn.
+                Với sức mạnh vượt thời gian và khả năng ứng dụng cực kỳ rộng lớn, Java vẫn luôn là lựa chọn hàng đầu cho các hệ thống quy mô lớn. Việc làm chủ Java sẽ mở ra rất nhiều cơ hội nghề nghiệp trong tương lai cho bạn, từ phát triển web backend, ứng dụng Android, đến các hệ thống doanh nghiệp và Big Data.
+            </p>
+            <p class="mt-4">
+                Nếu bạn là sinh viên CNTT đang tìm kiếm một ngôn ngữ lập trình để bắt đầu hành trình của mình, Java là một lựa chọn tuyệt vời. Với cộng đồng lớn, tài liệu phong phú, và triển vọng nghề nghiệp rộng mở, Java sẽ là nền tảng vững chắc cho sự nghiệp lập trình của bạn.
             </p>
         </div>
 
@@ -413,6 +602,18 @@
             script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
             document.body.appendChild(script);
         }
+
+        // Dark Mode Toggle
+        (function() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    const html = document.documentElement;
+                    const isDark = html.classList.toggle('dark');
+                    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                });
+            }
+        })();
     </script>
 
 </body>
