@@ -44,9 +44,19 @@
         .lesson-item.active .lesson-content { max-height: 1000px; opacity: 1; margin-top: 1.5rem; }
         .lesson-item.active .chevron { transform: rotate(180deg); }
         .lesson-item.active { border-color: rgb(20 184 166 / 0.3); background-color: white; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
+        .dark .lesson-item.active { background-color: rgb(30 41 59); border-color: rgb(20 184 166 / 0.5); }
     </style>
+    <script>
+        // Dark mode initialization - must run before Tailwind loads
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
 </head>
-<body class="bg-gradient-to-br from-slate-50 via-cyan-50/30 to-teal-50/20 text-slate-800 leading-relaxed min-h-screen">
+<body class="bg-gradient-to-br from-slate-50 via-cyan-50/30 to-teal-50/20 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-slate-800 dark:text-slate-100 leading-relaxed min-h-screen transition-colors duration-300">
 
     <nav class="sticky top-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-50 py-6 border-b border-slate-200 dark:border-slate-700">
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
@@ -74,8 +84,8 @@
 
     <main class="max-w-6xl mx-auto px-6 py-20">
         <header class="text-center mb-20">
-            <h1 class="text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">Hệ thống Lộ trình học tập</h1>
-            <p class="text-slate-500 max-w-2xl mx-auto text-lg leading-relaxed">
+            <h1 class="text-5xl font-extrabold text-slate-900 dark:text-slate-100 mb-6 tracking-tight">Hệ thống Lộ trình học tập</h1>
+            <p class="text-slate-500 dark:text-slate-300 max-w-2xl mx-auto text-lg leading-relaxed">
                 Khám phá các giáo trình chuyên sâu về Lập trình & An ninh mạng với lộ trình bài bản lên tới 30 bài học thực chiến.
             </p>
         </header>
@@ -83,26 +93,26 @@
         <div class="space-y-24">
             
             <!-- Dự án 1: Master Java Fullstack & Security -->
-            <div class="bg-white rounded-[3.5rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+            <div class="bg-white dark:bg-slate-800 rounded-[3.5rem] border border-slate-100 dark:border-slate-700 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
                 <div class="grid grid-cols-1 lg:grid-cols-2">
-                    <div class="p-12 lg:p-16 space-y-8 border-b lg:border-b-0 lg:border-r border-slate-100">
-                        <div class="w-20 h-20 bg-teal-50 rounded-3xl flex items-center justify-center">
+                    <div class="p-12 lg:p-16 space-y-8 border-b lg:border-b-0 lg:border-r border-slate-100 dark:border-slate-700">
+                        <div class="w-20 h-20 bg-teal-50 dark:bg-teal-900/30 rounded-3xl flex items-center justify-center">
                             <span class="text-4xl">☕</span>
                         </div>
                         <div class="space-y-4">
-                            <h2 class="text-4xl font-black text-slate-900 leading-tight">Master Java Fullstack & Security</h2>
-                            <p class="text-slate-500 text-lg leading-relaxed">
+                            <h2 class="text-4xl font-black text-slate-900 dark:text-slate-100 leading-tight">Master Java Fullstack & Security</h2>
+                            <p class="text-slate-500 dark:text-slate-300 text-lg leading-relaxed">
                                 Giáo trình chuyên sâu tập trung vào tư duy hệ thống, xử lý dữ liệu lớn và bảo mật mã nguồn Java ứng dụng trong doanh nghiệp.
                             </p>
                         </div>
                         <div class="flex flex-wrap gap-3">
-                            <span class="px-5 py-2 bg-teal-50 text-teal-600 rounded-full text-xs font-bold uppercase tracking-widest">20 Bài học</span>
-                            <span class="px-5 py-2 bg-emerald-50 text-emerald-600 rounded-full text-xs font-bold uppercase tracking-widest">Expert Level</span>
+                            <span class="px-5 py-2 bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-full text-xs font-bold uppercase tracking-widest">20 Bài học</span>
+                            <span class="px-5 py-2 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-full text-xs font-bold uppercase tracking-widest">Expert Level</span>
                         </div>
                     </div>
 
-                    <div class="p-12 lg:p-16 bg-slate-50/30 max-h-[800px] overflow-y-auto custom-scrollbar">
-                        <h4 class="text-slate-900 font-bold uppercase tracking-[0.2em] text-xs mb-10 text-teal-600">Nội dung chi tiết</h4>
+                    <div class="p-12 lg:p-16 bg-slate-50/30 dark:bg-slate-900/50 max-h-[800px] overflow-y-auto custom-scrollbar">
+                        <h4 class="text-slate-900 dark:text-slate-100 font-bold uppercase tracking-[0.2em] text-xs mb-10 text-teal-600 dark:text-teal-400">Nội dung chi tiết</h4>
                         <div class="space-y-4">
                             <script>
                                 const javaLessons = [
@@ -130,16 +140,16 @@
 
                                 javaLessons.forEach(lesson => {
                                     document.write(`
-                                        <div class="lesson-item bg-white border border-slate-100 rounded-2xl p-6 cursor-pointer shadow-sm hover:border-teal-200 transition-all" onclick="this.classList.toggle('active')">
+                                        <div class="lesson-item bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl p-6 cursor-pointer shadow-sm hover:border-teal-200 dark:hover:border-teal-700 transition-all" onclick="this.classList.toggle('active')">
                                             <div class="flex justify-between items-center">
                                                 <div class="flex items-center gap-4">
                                                     <span class="w-8 h-8 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold text-xs">${lesson.id}</span>
-                                                    <h5 class="font-bold text-slate-900">${lesson.title}</h5>
+                                                    <h5 class="font-bold text-slate-900 dark:text-slate-100">${lesson.title}</h5>
                                                 </div>
-                                                <svg class="chevron w-5 h-5 text-slate-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                                <svg class="chevron w-5 h-5 text-slate-400 dark:text-slate-500 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                             </div>
                                             <div class="lesson-content">
-                                                <p class="text-slate-500 text-sm leading-relaxed">${lesson.content}</p>
+                                                <p class="text-slate-500 dark:text-slate-300 text-sm leading-relaxed">${lesson.content}</p>
                                             </div>
                                         </div>
                                     `);
@@ -151,26 +161,26 @@
             </div>
 
             <!-- Dự án 2: Frontend Master & Web Security -->
-            <div class="bg-white rounded-[3.5rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+            <div class="bg-white dark:bg-slate-800 rounded-[3.5rem] border border-slate-100 dark:border-slate-700 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
                 <div class="grid grid-cols-1 lg:grid-cols-2">
-                    <div class="p-12 lg:p-16 space-y-8 border-b lg:border-b-0 lg:border-r border-slate-100">
-                        <div class="w-20 h-20 bg-cyan-50 rounded-3xl flex items-center justify-center">
+                    <div class="p-12 lg:p-16 space-y-8 border-b lg:border-b-0 lg:border-r border-slate-100 dark:border-slate-700">
+                        <div class="w-20 h-20 bg-cyan-50 dark:bg-cyan-900/30 rounded-3xl flex items-center justify-center">
                             <span class="text-4xl">🚀</span>
                         </div>
                         <div class="space-y-4">
-                            <h2 class="text-4xl font-black text-slate-900 leading-tight">Frontend Master & Web Security</h2>
-                            <p class="text-slate-500 text-lg leading-relaxed">
+                            <h2 class="text-4xl font-black text-slate-900 dark:text-slate-100 leading-tight">Frontend Master & Web Security</h2>
+                            <p class="text-slate-500 dark:text-slate-300 text-lg leading-relaxed">
                                 Lộ trình từ Zero đến Hero về JavaScript hiện đại, ReactJS và các kỹ thuật phòng thủ Web chuyên sâu.
                             </p>
                         </div>
                         <div class="flex flex-wrap gap-3">
-                            <span class="px-5 py-2 bg-cyan-50 text-cyan-600 rounded-full text-xs font-bold uppercase tracking-widest">15 Bài học</span>
-                            <span class="px-5 py-2 bg-teal-50 text-teal-600 rounded-full text-xs font-bold uppercase tracking-widest">Security Focus</span>
+                            <span class="px-5 py-2 bg-cyan-50 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400 rounded-full text-xs font-bold uppercase tracking-widest">15 Bài học</span>
+                            <span class="px-5 py-2 bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-full text-xs font-bold uppercase tracking-widest">Security Focus</span>
                         </div>
                     </div>
 
-                    <div class="p-12 lg:p-16 bg-slate-50/30 max-h-[800px] overflow-y-auto custom-scrollbar">
-                        <h4 class="text-slate-900 font-bold uppercase tracking-[0.2em] text-xs mb-10 text-cyan-600">Nội dung chi tiết</h4>
+                    <div class="p-12 lg:p-16 bg-slate-50/30 dark:bg-slate-900/50 max-h-[800px] overflow-y-auto custom-scrollbar">
+                        <h4 class="text-slate-900 dark:text-slate-100 font-bold uppercase tracking-[0.2em] text-xs mb-10 text-cyan-600 dark:text-cyan-400">Nội dung chi tiết</h4>
                         <div class="space-y-4">
                             <script>
                                 const jsLessons = [
@@ -193,16 +203,16 @@
 
                                 jsLessons.forEach(lesson => {
                                     document.write(`
-                                        <div class="lesson-item bg-white border border-slate-100 rounded-2xl p-6 cursor-pointer shadow-sm hover:border-cyan-200 transition-all" onclick="this.classList.toggle('active')">
+                                        <div class="lesson-item bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl p-6 cursor-pointer shadow-sm hover:border-cyan-200 dark:hover:border-cyan-700 transition-all" onclick="this.classList.toggle('active')">
                                             <div class="flex justify-between items-center">
                                                 <div class="flex items-center gap-4">
                                                     <span class="w-8 h-8 bg-cyan-500 text-white rounded-full flex items-center justify-center font-bold text-xs">${lesson.id}</span>
-                                                    <h5 class="font-bold text-slate-900">${lesson.title}</h5>
+                                                    <h5 class="font-bold text-slate-900 dark:text-slate-100">${lesson.title}</h5>
                                                 </div>
-                                                <svg class="chevron w-5 h-5 text-slate-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                                <svg class="chevron w-5 h-5 text-slate-400 dark:text-slate-500 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                             </div>
                                             <div class="lesson-content">
-                                                <p class="text-slate-500 text-sm leading-relaxed">${lesson.content}</p>
+                                                <p class="text-slate-500 dark:text-slate-300 text-sm leading-relaxed">${lesson.content}</p>
                                             </div>
                                         </div>
                                     `);
@@ -214,26 +224,26 @@
             </div>
 
             <!-- Dự án 3: Cybersecurity Professional Lab -->
-            <div class="bg-white rounded-[3.5rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+            <div class="bg-white dark:bg-slate-800 rounded-[3.5rem] border border-slate-100 dark:border-slate-700 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
                 <div class="grid grid-cols-1 lg:grid-cols-2">
-                    <div class="p-12 lg:p-16 space-y-8 border-b lg:border-b-0 lg:border-r border-slate-100">
-                        <div class="w-20 h-20 bg-rose-50 rounded-3xl flex items-center justify-center">
+                    <div class="p-12 lg:p-16 space-y-8 border-b lg:border-b-0 lg:border-r border-slate-100 dark:border-slate-700">
+                        <div class="w-20 h-20 bg-rose-50 dark:bg-rose-900/30 rounded-3xl flex items-center justify-center">
                             <span class="text-4xl">🛡️</span>
                         </div>
                         <div class="space-y-4">
-                            <h2 class="text-4xl font-black text-slate-900 leading-tight">Cybersecurity Professional Lab</h2>
-                            <p class="text-slate-500 text-lg leading-relaxed">
+                            <h2 class="text-4xl font-black text-slate-900 dark:text-slate-100 leading-tight">Cybersecurity Professional Lab</h2>
+                            <p class="text-slate-500 dark:text-slate-300 text-lg leading-relaxed">
                                 Dự án nghiên cứu thực chiến về hạ tầng mạng, tấn công giả lập và các phương pháp phòng thủ chủ động.
                             </p>
                         </div>
                         <div class="flex flex-wrap gap-3">
-                            <span class="px-5 py-2 bg-rose-50 text-rose-600 rounded-full text-xs font-bold uppercase tracking-widest">15 Module</span>
-                            <span class="px-5 py-2 bg-slate-900 text-white rounded-full text-xs font-bold uppercase tracking-widest">Offensive Security</span>
+                            <span class="px-5 py-2 bg-rose-50 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 rounded-full text-xs font-bold uppercase tracking-widest">15 Module</span>
+                            <span class="px-5 py-2 bg-slate-900 dark:bg-slate-700 text-white dark:text-slate-200 rounded-full text-xs font-bold uppercase tracking-widest">Offensive Security</span>
                         </div>
                     </div>
 
-                    <div class="p-12 lg:p-16 bg-slate-50/30 max-h-[800px] overflow-y-auto custom-scrollbar">
-                        <h4 class="text-slate-900 font-bold uppercase tracking-[0.2em] text-xs mb-10 text-rose-600">Nội dung chi tiết</h4>
+                    <div class="p-12 lg:p-16 bg-slate-50/30 dark:bg-slate-900/50 max-h-[800px] overflow-y-auto custom-scrollbar">
+                        <h4 class="text-slate-900 dark:text-slate-100 font-bold uppercase tracking-[0.2em] text-xs mb-10 text-rose-600 dark:text-rose-400">Nội dung chi tiết</h4>
                         <div class="space-y-4">
                             <script>
                                 const securityLessons = [
@@ -256,16 +266,16 @@
 
                                 securityLessons.forEach(lesson => {
                                     document.write(`
-                                        <div class="lesson-item bg-white border border-slate-100 rounded-2xl p-6 cursor-pointer shadow-sm hover:border-rose-200 transition-all" onclick="this.classList.toggle('active')">
+                                        <div class="lesson-item bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl p-6 cursor-pointer shadow-sm hover:border-rose-200 dark:hover:border-rose-700 transition-all" onclick="this.classList.toggle('active')">
                                             <div class="flex justify-between items-center">
                                                 <div class="flex items-center gap-4">
                                                     <span class="w-8 h-8 bg-rose-600 text-white rounded-full flex items-center justify-center font-bold text-xs">${lesson.id}</span>
-                                                    <h5 class="font-bold text-slate-900">${lesson.title}</h5>
+                                                    <h5 class="font-bold text-slate-900 dark:text-slate-100">${lesson.title}</h5>
                                                 </div>
-                                                <svg class="chevron w-5 h-5 text-slate-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                                <svg class="chevron w-5 h-5 text-slate-400 dark:text-slate-500 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                             </div>
                                             <div class="lesson-content">
-                                                <p class="text-slate-500 text-sm leading-relaxed">${lesson.content}</p>
+                                                <p class="text-slate-500 dark:text-slate-300 text-sm leading-relaxed">${lesson.content}</p>
                                             </div>
                                         </div>
                                     `);
@@ -279,52 +289,59 @@
         </div>
     </main>
 
-    <footer class="bg-white border-t border-slate-100 pt-20 pb-12">
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 pt-20 pb-12">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
                 <div class="col-span-1 md:col-span-2 space-y-6">
-                    <a href="index.html" class="text-2xl font-bold tracking-tight bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent italic">Doan Minh Quan Blog.</a>
-                    <p class="text-slate-500 max-w-sm leading-relaxed">
+                    <a href="index.html" class="text-2xl font-bold tracking-tight bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-400 dark:to-cyan-400 bg-clip-text text-transparent italic">Doan Minh Quan Blog.</a>
+                    <p class="text-slate-500 dark:text-slate-400 max-w-sm leading-relaxed">
                         Nơi chia sẻ hành trình học tập, kinh nghiệm thực chiến về lập trình và an ninh mạng của một sinh viên CNTT.
                     </p>
                 </div>
                 <div class="space-y-6">
-                    <h4 class="text-slate-900 font-bold uppercase tracking-wider text-sm">Điều hướng</h4>
+                    <h4 class="text-slate-900 dark:text-slate-100 font-bold uppercase tracking-wider text-sm">Điều hướng</h4>
                     <ul class="space-y-4">
-                        <li><a href="index.html" class="text-slate-500 hover:text-teal-600 transition-colors">Trang chủ</a></li>
-                        <li><a href="index.html#blog" class="text-slate-500 hover:text-teal-600 transition-colors">Bài viết</a></li>
-                        <li><a href="profile.html" class="text-slate-500 hover:text-teal-600 transition-colors">Giới thiệu</a></li>
+                        <li><a href="index.html" class="text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">Trang chủ</a></li>
+                        <li><a href="index.html#blog" class="text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">Bài viết</a></li>
+                        <li><a href="profile.html" class="text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">Giới thiệu</a></li>
                     </ul>
                 </div>
                 <div class="space-y-6">
-                    <h4 class="text-slate-900 font-bold uppercase tracking-wider text-sm">Kết nối</h4>
+                    <h4 class="text-slate-900 dark:text-slate-100 font-bold uppercase tracking-wider text-sm">Kết nối</h4>
                     <ul class="space-y-4">
-                        <li><a href="#" class="text-slate-500 hover:text-teal-600 transition-colors">GitHub</a></li>
-                        <li><a href="#" class="text-slate-500 hover:text-teal-600 transition-colors">LinkedIn</a></li>
-                        <li><a href="#" class="text-slate-500 hover:text-teal-600 transition-colors">Facebook</a></li>
+                        <li><a href="#" class="text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">GitHub</a></li>
+                        <li><a href="#" class="text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">LinkedIn</a></li>
+                        <li><a href="#" class="text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">Facebook</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
-                <p class="text-slate-400 text-sm italic">
+            <div class="pt-8 border-t border-slate-100 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-slate-400 dark:text-slate-500 text-sm italic">
                     &copy; 2025 Doan Minh Quan. Tất cả quyền được bảo lưu.
                 </p>
                 <div class="flex gap-8">
-                    <a href="#" class="text-slate-400 hover:text-teal-600 text-sm transition-colors">Chính sách bảo mật</a>
-                    <a href="#" class="text-slate-400 hover:text-teal-600 text-sm transition-colors">Điều khoản</a>
+                    <a href="#" class="text-slate-400 dark:text-slate-500 hover:text-teal-600 dark:hover:text-teal-400 text-sm transition-colors">Chính sách bảo mật</a>
+                    <a href="#" class="text-slate-400 dark:text-slate-500 hover:text-teal-600 dark:hover:text-teal-400 text-sm transition-colors">Điều khoản</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Dark Mode Toggle
+        // Dark Mode Toggle - Run immediately and also on DOM ready
         (function() {
             function initDarkMode() {
                 const themeToggle = document.getElementById('themeToggle');
-                if (!themeToggle) return;
+                if (!themeToggle) {
+                    console.warn('Theme toggle button not found');
+                    return;
+                }
 
-                themeToggle.addEventListener('click', function(e) {
+                // Remove any existing listeners by cloning the element
+                const newToggle = themeToggle.cloneNode(true);
+                themeToggle.parentNode.replaceChild(newToggle, themeToggle);
+
+                newToggle.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
                     const html = document.documentElement;
@@ -333,11 +350,15 @@
                 });
             }
             
-            // Initialize when DOM is ready
+            // Try to initialize immediately
+            initDarkMode();
+            
+            // Also try on DOM ready as backup
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', initDarkMode);
             } else {
-                initDarkMode();
+                // DOM already ready, try again after a short delay
+                setTimeout(initDarkMode, 100);
             }
         })();
     </script>
